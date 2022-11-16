@@ -11,12 +11,22 @@ Om Flask te kunnen starten zul je eerst de Flask packages moeten installeren. Wi
 ```
 pip install virtualenv
 virtualenv venv
-.\venv\sripts\activate
+.\venv\scripts\activate
 pip install -r requirements.txt
 ```
 
+Als PowerShell de scripts niet will runnen: 
+
+1. Open PowerShell als administrator.
+2. Typ het volgende command in PowerShell:
+
+``` 
+Set-ExecutionPolicy RemoteSigned
+```
+
+
 Om de demo applicatie te starten: 
 ``` 
-.\venv\sripts\activate
+.\venv\scripts\activate
 python app.py
 ```
