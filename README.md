@@ -7,7 +7,7 @@ Starter repository voor Werkplaats 2. Deze repository bevat een Flask applicatie
 
 
 # Installatie
-Om de virtual enviroment te activeren met je de volgende stappen doen: 
+Om de virtual enviroment te activeren moet je de uitvoeringsbeleid van PowerShell wijzigen: 
 
 1. Open PowerShell als administrator.
 2. Typ het volgende command in PowerShell:
