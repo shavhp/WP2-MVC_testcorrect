@@ -13,8 +13,9 @@ Om de virtual enviroment te activeren met je de volgende stappen doen:
 2. Typ het volgende command in PowerShell:
 
 ``` 
-Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
 
 Om Flask te kunnen starten zul je eerst de Flask packages moeten installeren. Wil je latere problemen met versies voorkomen, dan raden we je aan een virtual environment te maken en daar de modules in te installeren:  
 ```
