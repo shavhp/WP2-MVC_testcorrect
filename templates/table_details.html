@@ -10,18 +10,31 @@
 </head>
 <body>
 
-<ul>
-    <li><a href="/">Home</a></li>
-  <li>
-   <a href="">Tabellen </a>
-   <ul class = "dropdown">
-  {% for table in table_list %}
-      <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
-  {% endfor %}
-   </ul>
- </li>
-</ul>
- <h1>Database onderzoek</h1>
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li>
+            <a href="">Patronen </a>
+            <ul class = "dropdown">
+                <li><a href=""> </a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">Data Qualiteit </a>
+            <ul class = "dropdown">
+                <li><a href=""> </a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">Tabellen </a>
+            <ul class = "dropdown">
+                {% for table in table_list %}
+                <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</nav>
 
 <main>
 
@@ -29,6 +42,7 @@
 
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
 
+<div class="container">
     <table>
         <thead>
         <tr>
@@ -39,7 +53,7 @@
         </thead>
         <tbody>
         {% for row in rows %}
-        <tr>
+        <tr class="active-row">
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
@@ -48,6 +62,7 @@
         </tbody>
 
     </table>
+</div>
 </main>
 
 

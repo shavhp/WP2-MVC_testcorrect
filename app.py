@@ -31,11 +31,14 @@ dbm = DatabaseModel(DATABASE_FILE)
 
 
 @app.route("/")
+def loginscherm():
+    return render_template("login.html")
+
+@app.route("/home")
 def index():
     tables = dbm.get_table_list()
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
-
     )
 
 # The table route displays the content of a table
@@ -49,6 +52,7 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
+
 
 
 
