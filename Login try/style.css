@@ -45,6 +45,22 @@ form .txt_field{
   background: none;
   outline: none;
 }
+.next_page a{
+  position: absolute;
+  top: 80%;
+  left: 140px;
+  border: 3px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  margin: 50px 0;
+  border-color: #2691d9;
+  transition: .5s;
+}
 .txt_field label{
   position: absolute;
   top: 50%;
