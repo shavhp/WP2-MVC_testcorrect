@@ -29,7 +29,6 @@ dbm = DatabaseModel(DATABASE_FILE)
 # can safely ignore this for now - or look into it as it is a really powerful
 # concept in Python.
 
-
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
@@ -52,10 +51,6 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
-
-
-
-
 
 
 if __name__ == "__main__":
