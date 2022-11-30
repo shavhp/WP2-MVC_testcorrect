@@ -10,7 +10,7 @@ from lib.demodatabase import create_demo_database
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
-FLASK_PORT = 81
+FLASK_PORT = 8
 FLASK_DEBUG = True
 
 app = Flask(__name__)
@@ -35,19 +35,23 @@ def index():
     tables = dbm.get_table_list()
     return render_template(
         "tables.html", table_list=tables, database_file=DATABASE_FILE
-    )
 
+    )
 
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
 def table_content(table_name=None):
+    tables = dbm.get_table_list()
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
         rows, column_names = dbm.get_table_content(table_name)
         return render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name
+            "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
+
+
+
 
 
 if __name__ == "__main__":
