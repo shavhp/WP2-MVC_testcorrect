@@ -2,5 +2,9 @@
 SELECT * FROM vragen WHERE vraag IS NULL OR
 vraag = ' ';
 
-#Disable NULL checks so you can (intentionally) insert rows with invalid columns
+#Disable NULL checks so you can insert rows with (intentionally) invalid columns
 PRAGMA ignore_check_constraints = 1;
+
+#Template to insert intentionally invalid rows into the "vragen" section
+INSERT INTO vragen (id, leerdoel, vraag, auteur)
+VALUES (7992, null, '', null);
