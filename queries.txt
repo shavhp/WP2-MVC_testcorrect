@@ -1,0 +1,6 @@
+#Find in 'vragen' table everything where the 'vraag' column is NULL or empty
+SELECT * FROM vragen WHERE vraag IS NULL OR
+vraag = ' ';
+
+#Disable NULL checks so you can (intentionally) insert rows with invalid columns
+PRAGMA ignore_check_constraints = 1;
