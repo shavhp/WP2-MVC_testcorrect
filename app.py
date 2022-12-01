@@ -29,9 +29,11 @@ dbm = DatabaseModel(DATABASE_FILE)
 # can safely ignore this for now - or look into it as it is a really powerful
 # concept in Python.
 
+
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
+
 
 @app.route("/home")
 def index():
@@ -49,6 +51,7 @@ def get_leerdoelen():
         rows, column_names = dbm.get_leerdoelen()
         return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
+
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
 def table_content(table_name=None):
@@ -60,7 +63,6 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
-
 
 
 if __name__ == "__main__":

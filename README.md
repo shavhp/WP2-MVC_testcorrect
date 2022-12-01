@@ -1,4 +1,4 @@
-# werkplaats2_starter
+# Werkplaats2_starter
 Starter repository voor Werkplaats 2. Deze repository bevat een Flask applicatie met een aantal van de componenten die we ook nodig hebben om de werkplaats opdracht uit te voeren: 
 - Een database
 - Templates
