@@ -8,9 +8,9 @@
 --c1: #004df5;
 --c2:#393941;
 --c3:#fff;
---c4:#fff;
---c5:#fff;
---c6: #ffffff;
+--c4:#000;
+--c5:#000;
+--c6: #000000;
 --m1: 8px;
 --rc: 8px;
 }
@@ -45,7 +45,7 @@ body {
     color: var(--c4);
 }
 
-/* Navigarion Menu */
+/* Navigation Menu */
 nav { margin:0 auto; width:100%; height:auto; display:inline-block; background:var(--c1); }
 nav ul { margin:0;padding:0; list-style-type:none; float:left; display:inline-block; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
