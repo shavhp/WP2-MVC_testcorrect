@@ -55,5 +55,10 @@ def index():
         "tables.html", table_list=tables, database_file=DATABASE_FILE
     )
 
+'''@app.route("/leerdoelen")
+def get_leerdoelen():
+'''
+
+
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

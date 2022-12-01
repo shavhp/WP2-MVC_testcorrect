@@ -11,7 +11,6 @@ Om de virtual environment te activeren moet je het uitvoeringsbeleid van PowerSh
 
 1. Open PowerShell als administrator.
 2. Type het volgende commando in PowerShell:
-
 ``` 
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
