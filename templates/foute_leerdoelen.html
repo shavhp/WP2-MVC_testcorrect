@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Database displayer</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li>
+            <a href="">Patronen </a>
+            <ul class = "dropdown">
+                <li><a href="/leerdoelen">Leerdoelen</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">Data Kwaliteit </a>
+            <ul class = "dropdown">
+                <li><a href=""> </a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="">Tabellen </a>
+            <ul class = "dropdown">
+                {% for table in table_list %}
+                <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<main>
+
+
+
+    <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr class="active-row">
+            {% for field in row %}
+            <td>{{ field }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+</main>
+
+
+
+
+
+
+</body>
+
+</html>
