@@ -9,32 +9,8 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
+{% include "/navbar.html" %}
 
-<nav>
-    <ul>
-        <li><a href="/home">Home</a></li>
-        <li>
-            <a href="">Patronen </a>
-            <ul class = "dropdown">
-                <li><a href="/leerdoelen">Leerdoelen</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="">Data Kwaliteit </a>
-            <ul class = "dropdown">
-                <li><a href=""> </a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="">Tabellen </a>
-            <ul class = "dropdown">
-                {% for table in table_list %}
-                <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</nav>
 
 <main>
 
@@ -42,8 +18,8 @@
 
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
 
-<div class="container">
-    <table class="purpleHorizon">
+<div>
+    <table>
         <thead>
         <tr>
             {% for column in columns %}
@@ -65,7 +41,6 @@
         {% endfor %}
 
         </tbody>
-
     </table>
 </div>
 </main>
