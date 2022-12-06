@@ -51,6 +51,14 @@ def get_leerdoelen():
         rows, column_names = dbm.get_leerdoelen()
         return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
+@app.route("/vraag")
+def get_vraag():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_vraag()
+        return render_template("invalid_vraag.html", rows=rows, columns=column_names, table_list=tables)
+
 
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")

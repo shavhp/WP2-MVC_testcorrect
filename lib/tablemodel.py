@@ -36,3 +36,11 @@ class DatabaseModel:
         leerdoelen_table_content = cursor.fetchall()
         # Note that this method returns 2 variables!
         return leerdoelen_table_content, leerdoelen_table_headers
+
+    def get_vraag(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM vragen WHERE vraag IS NULL OR vraag = '';")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        vraag_table_headers = [column_name[0] for column_name in cursor.description]
+        vraag_table_content = cursor.fetchall()
+        return vraag_table_content, vraag_table_headers
