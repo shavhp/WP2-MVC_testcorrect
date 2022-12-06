@@ -43,12 +43,14 @@
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
 
 <div class="container">
-    <table>
+    <table class="purpleHorizon">
         <thead>
         <tr>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
+            <th>edit</th>
+            <th>ignor</th>
         </tr>
         </thead>
         <tbody>
@@ -57,8 +59,11 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
+        <td><button class="button-tabel">Edit</button></td>
+        <td><button class="button-tabel">Ignor</button></td>
         </tr>
         {% endfor %}
+
         </tbody>
 
     </table>
