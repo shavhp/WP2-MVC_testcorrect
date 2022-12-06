@@ -44,3 +44,11 @@ class DatabaseModel:
         vraag_table_headers = [column_name[0] for column_name in cursor.description]
         vraag_table_content = cursor.fetchall()
         return vraag_table_content, vraag_table_headers
+
+    def get_auteurs(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM vragen WHERE auteur NOT IN(SELECT id FROM auteurs) or auteur is NULL")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        auteurs_table_headers = [column_name[0] for column_name in cursor.description]
+        auteurs_table_content = cursor.fetchall()
+        return auteurs_table_content, auteurs_table_headers
