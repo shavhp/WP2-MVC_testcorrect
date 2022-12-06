@@ -37,7 +37,7 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return leerdoelen_table_content, leerdoelen_table_headers
 
-    def get_vraag(self):
+    def get_vragen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT * FROM vragen WHERE vraag IS NULL OR vraag = '';")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
