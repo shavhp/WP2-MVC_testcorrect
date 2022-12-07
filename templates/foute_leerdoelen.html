@@ -7,9 +7,10 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <link rel="stylesheet" href="/static/edit-button.css" type="text/css">
 </head>
 <body>
-{% include "/navbar.html" %}
+{% include "/Navbar.html" %}
 
 
 <main>
@@ -35,9 +36,11 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
+        <td><button class="button-tabel" onClick="openForm()">Edit</button></td>
+        {% include "/edit-button-form.html" %}
         <td><button class="button-tabel">Ignore</button></td>
         </tr>
+
         {% endfor %}
         </tbody>
 
@@ -52,4 +55,13 @@
 
 </body>
 
+<script>
+    function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
 </html>
