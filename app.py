@@ -1,7 +1,7 @@
 import os.path
 import sys
 
-from flask import Flask, request, render_template
+from flask import Flask,request,render_template
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -10,7 +10,7 @@ from lib.demodatabase import create_demo_database
 # a simple demo dataset will be created.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
-FLASK_PORT = 8
+FLASK_PORT = 80
 FLASK_DEBUG = True
 
 app = Flask(__name__)
@@ -33,14 +33,19 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
+database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast'}
 
-
-@app.route("/home")
-def index():
-    tables = dbm.get_table_list()
-    return render_template(
-        "tables.html", table_list=tables, database_file=DATABASE_FILE
-    )
+@app.route('/form_login',methods=['POST','GET'])
+def login():
+    name1=request.form['username']
+    pwd=request.form['password']
+    if name1 not in database:
+        return render_template('login.html',info='Invalid User')
+    else:
+        if database[name1]!=pwd:
+            return render_template('login.html',info='Invalid Password')
+        else:
+            return render_template('home.html',name=name1)
 
 
 @app.route("/leerdoelen")
