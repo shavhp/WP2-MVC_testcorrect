@@ -51,15 +51,15 @@
 <div class="box">
   <select >
       {% for column_name in columns %}
-    <option>{{ column_name }}</option>
+    <option name="Value_1" >{{ column_name }}</option>
       {% endfor %}
   </select>
 </div>
     <div>
 <label for="fname">From</label>
-  <input type="text" id="fname" name="fname"  placeholder="Value 1" value=""><br>
+  <input type="text" id="fname" name="Value_2"  placeholder="Value 1" value=""><br>
   <label for="lname">Till</label>
-  <input type="text" id="lname" name="lname" placeholder="Value 2" value="">
+  <input type="text" id="lname" name="Value_3" placeholder="Value 2" value="">
   <input type="submit" value="Submit">
     </div>
 </form>
