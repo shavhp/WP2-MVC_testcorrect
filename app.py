@@ -51,6 +51,22 @@ def get_leerdoelen():
         rows, column_names = dbm.get_leerdoelen()
         return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
+@app.route("/vragen")
+def get_vragen():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_vragen()
+        return render_template("invalid_vraag.html", rows=rows, columns=column_names, table_list=tables)
+
+@app.route("/auteurs")
+def get_auteurs():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_auteurs()
+        return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
+
 
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
