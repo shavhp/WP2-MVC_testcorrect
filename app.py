@@ -64,6 +64,15 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
 
+# @app.route("")
+
+@app.route('/table_details/<table_name>/<table_list>/')
+def filter_table(table_name, table_list):
+    tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
+    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+
+
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

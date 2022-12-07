@@ -8,3 +8,9 @@ PRAGMA ignore_check_constraints = 1;
 #Template to insert intentionally invalid rows into the "vragen" section
 INSERT INTO vragen (id, leerdoel, vraag, auteur)
 VALUES (7992, null, '', null);
+
+
+#even proberen Erik :)
+SELECT * from {Tabel} Where {columm_name} BETWEEN {value_1} AND {value_2}
+SELECT name from pragma_table_info({Tabel})
+

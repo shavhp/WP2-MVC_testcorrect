@@ -11,6 +11,14 @@ class DatabaseModel:
         if not os.path.exists(self.database_file):
             raise FileNotFoundError(f"Could not find database file: {database_file}")
 
+    def run_query(self, sql_query):
+        conn = sqlite3.connect(self.database_file)
+        c = conn.cursor()
+        c.execute(sql_query)
+        tables = c.fetchall()
+        conn.close()
+        return tables
+
     # Using the built-in sqlite3 system table, return a list of all tables in the database
     def get_table_list(self):
         cursor = sqlite3.connect(self.database_file).cursor()
@@ -36,3 +44,17 @@ class DatabaseModel:
         leerdoelen_table_content = cursor.fetchall()
         # Note that this method returns 2 variables!
         return leerdoelen_table_content, leerdoelen_table_headers
+
+    def get_columns(self, table):
+        sql_query = "PRAGMA table_info({})".format(table)
+        result = self.run_query(sql_query)
+        table_list = []
+        for table in result:
+            table_list.append(table[1])
+        return table_list
+
+        table_list = []
+        for table in result:
+            table_list.append(table[0])
+        return table_list
+
