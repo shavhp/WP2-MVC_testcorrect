@@ -33,7 +33,7 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
-database={'nachi':'123','james':'aac','karthik':'asdsf'}
+database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast'}
 
 @app.route('/form_login',methods=['POST','GET'])
 def login():
