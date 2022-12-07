@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Login Form</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
     <link rel="stylesheet" href="../static/style.css">
-  </head>
-  <body>
+</head>
+<body>
     <div class="center">
       <h1>Login</h1>
-      <form method="post">
-        <div class="txt_field">
-          <input type="text" required>
-          <span></span>
-          <label>Username</label>
-        </div>
-        <div class="txt_field">
-          <input type="password" required>
-          <span></span>
-          <label>Password</label>
-        </div>
-        <input type="submit" value="Login">
-        <div class="next_page">
-            <a href="/home">Home Menu</a>
-        </div>
-
-      </form>
+<form action="/form_login" method="post">
+  <h2></h2>Username:<br>
+  <input type="text" name='username'><br>
+  Password:<br>
+  <input type="password"  name='password' ><br><br>
+<input type="submit" value="Login">
+</form>
+<h1 >{{info}}</h1>
     </div>
-
-  </body>
+</body>
 </html>
