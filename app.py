@@ -45,7 +45,7 @@ def login():
         if database[name1]!=pwd:
             return render_template('login.html',info='Invalid Password')
         else:
-            return render_template('home.html',name=name1)
+            return render_template('tables.html',name=name1)
 
 
 @app.route("/leerdoelen")
