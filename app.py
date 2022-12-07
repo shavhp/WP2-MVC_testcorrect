@@ -1,7 +1,7 @@
 import os.path
 import sys
 
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -86,6 +86,17 @@ def table_content(table_name=None):
 def filter_table(table_name, table_list):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
+    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+
+@app.route('/table_details/<table_name>/filter', methods =["GET", "POST"])
+def get_select_values(table_name):
+    tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
+    if request.method == "POST":
+       # Value_1 = request.form.get("Value_1")
+       Value_2 = request.form.get("Value_2")
+       Value_3 = request.form.get("Value_3")
+       print(Value_3, Value_2)
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
 
 
