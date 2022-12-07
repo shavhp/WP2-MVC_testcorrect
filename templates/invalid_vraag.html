@@ -14,11 +14,9 @@
 
 <main>
 
+    <p>Alle rijen in de tabel <b>vragen</b> met lege vragen:</p>
 
-
-    <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
-<div class="grid-container">
-<div class="grid-item1">
+<div class="container">
     <table>
         <thead>
         <tr>
@@ -39,42 +37,10 @@
         <td><button class="button-tabel">Ignore</button></td>
         </tr>
         {% endfor %}
-
         </tbody>
+
     </table>
 </div>
-
-<div class="grid-item2">
-<div class="select-filter">
-    <p><h2>Show column</h2></p>
-<form>
-<div class="box">
-  <select >
-      {% for column_name in columns %}
-    <option>{{ column_name }}</option>
-      {% endfor %}
-  </select>
-</div>
-    <div>
-<label for="fname">From</label>
-  <input type="text" id="fname" name="fname"  placeholder="Value 1" value=""><br>
-  <label for="lname">Till</label>
-  <input type="text" id="lname" name="lname" placeholder="Value 2" value="">
-  <input type="submit" value="Submit">
-    </div>
-</form>
-</div>
-</div>
-</div>
-
-
-</div>
 </main>
-
-
-
-
-
 </body>
-
 </html>

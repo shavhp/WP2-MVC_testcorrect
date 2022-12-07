@@ -51,6 +51,22 @@ def get_leerdoelen():
         rows, column_names = dbm.get_leerdoelen()
         return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
+@app.route("/vragen")
+def get_vragen():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_vragen()
+        return render_template("invalid_vraag.html", rows=rows, columns=column_names, table_list=tables)
+
+@app.route("/auteurs")
+def get_auteurs():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_auteurs()
+        return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
+
 
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
@@ -63,6 +79,15 @@ def table_content(table_name=None):
         return render_template(
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
+
+# @app.route("")
+
+@app.route('/table_details/<table_name>/<table_list>/')
+def filter_table(table_name, table_list):
+    tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
+    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+
 
 
 if __name__ == "__main__":

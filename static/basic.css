@@ -56,13 +56,41 @@ nav ul li ul li { width:100%; border-bottom:1px solid rgba(255,255,255,.3); }
 nav ul li:hover ul { display:block; }
 
 /* Tabel Style*/
-table {border: 0px solid #27973D;background-color: #004DF5;width: 100%;text-align: left;}
+/*
+table {border: 0px solid #27973D;background-color: #004DF5;width: 100% ;text-align: left;}
 table td, table.purpleHorizon th {border: 1px solid #162355;padding: 2px 2px;}
 table tbody td {font-size: 12px;font-weight: bold;color: #FFFFFF;}
 table tr:nth-child(even) {background: #2262CA;}
 table thead {background: #27973D;background: -moz-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: -webkit-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: linear-gradient(to bottom, #5db16d 0%, #3ca150 66%, #27973D 100%);border-bottom: 0px solid #270096;}
 table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0px solid #270096;}
 table thead th:first-child {border-left: none;}
+*/
+/*DropDown Button*/
+/*
+.box select {  background-color: #0563af;  color: white;  padding: 12px;  width: 250px;  border: none;  font-size: 20px;  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);  outline: none;}
+.box:hover::before {  color: rgba(255, 255, 255, 0.6);  background-color: rgba(255, 255, 255, 0.2);}
+.box select option {  padding: 30px;}
+*/
+
+
+.grid-item1 { grid-area: Tabel; }
+.grid-item2 { grid-area: SelectForm; width: 400px; height:400px ;margin-top: 16px; margin-left: 60px;  text-align: left;}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'Tabel Tabel Tabel Tabel SelectForm SelectForm'
+    'Tabel Tabel Tabel Tabel SelectForm SelectForm';
+}
+
+.select-filter{
+    width:100% ;
+    height:200px;
+    background-color: #838383;
+    text-align: left;
+    padding-left: 5px;
+}
+
 
 
 
@@ -108,40 +136,11 @@ pre,code,input,select,textarea,button,img {border-radius: var(--rc)}
 input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 0; padding: 0.6em}
 
 /* Infinite Grid */
-
-.button-tabel {
-  align-items: center;
-  appearance: button;
-  background-color: #0276FF;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  font-family: "RM Neue",sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-  padding: 10px 21px;
-  text-align: center;
-  text-transform: none;
-  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-tabel:active {
-  background-color: #006AE8;
-}
-
-.button-tabel:hover {
-  background-color: #1C84FF;
-}
+/*
+.button-tabel {  align-items: center;  appearance: button;  background-color: #0276FF;  border-radius: 8px;  border-style: none;  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;  box-sizing: border-box;  color: #fff;  cursor: pointer;  display: flex;  flex-direction: row;  flex-shrink: 0;  font-family: "RM Neue",sans-serif;  font-size: 100%;   line-height: 1.15;  margin: 0;  padding: 10px 21px;  text-align: center;  text-transform: none;  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;  user-select: none;  -webkit-user-select: none;  touch-action: manipulation;}
+.button-tabel:active {  background-color: #006AE8;}
+.button-tabel:hover {  background-color: #1C84FF;}
+*/
 
 section {display: flex; flex-flow: row wrap}
 
@@ -156,10 +155,10 @@ article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shad
 
 /* Mark: Toegevoegd aan basic.css */
 main,footer {
-    margin: 0 auto;
-    width: 60%;
-    text-align: center;
-    align-items: center;
+    margin: 0;
+    width: auto;
+    text-align: left;
+    align-items: left;
     padding: 0 20px;
 }
 
