@@ -7,6 +7,7 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <link rel="stylesheet" href="/static/dropdown_leerdoelen.css" type="text/css">
 </head>
 <body>
 {% include "/Navbar.html" %}
@@ -40,12 +41,18 @@
             {% endfor %}
 
         <td>
-            <select name="leerdoel" id="leerdoelen">
-            <option value=""></option>
-            </select>
-            <button type="submit" class="btn">Opslaan</button>
+        <!-- This code is derived from https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Kies nieuw leerdoel</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+
         </td>
-            <!-- <button class="button-tabel" onClick="openForm()">Edit</button></td> -->
+
         <td>
             <button class="button-tabel">Ignore</button>
         </td>
@@ -60,19 +67,29 @@
 
 
 
+<script>
+/* Script extracted from https://www.w3schools.com/howto/howto_js_popup_form.asp */
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
 
+/* Close the dropdown menu if the user clicks outside of it */
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 
 </body>
-
-<!-- Script extracted from https://www.w3schools.com/howto/howto_js_popup_form.asp -->
-<script>
-    function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
 </html>
