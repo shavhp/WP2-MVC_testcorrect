@@ -78,6 +78,15 @@ def get_auteurs():
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
+@app.route("/auteurs_not_null")
+def get_auteurs_null():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_auteurs()
+        return render_template("ingevulde_auteur.html", rows=rows, columns=column_names, table_list=tables)
+
+
 # The table route displays the content of a table
 @app.route("/table_details/<table_name>")
 def table_content(table_name=None):
