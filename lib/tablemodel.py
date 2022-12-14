@@ -46,15 +46,14 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return leerdoelen_table_content, leerdoelen_table_headers
 
-    def dropdown_get_leerdoelen(self):
+    '''def dropdown_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
         cursor.execute(f"SELECT leerdoel FROM leerdoelen")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
-        dropdown_leerdoelen_table_headers = [column_name[0] for column_name in cursor.description]
-        dropdown_leerdoelen_table_content = cursor.fetchall()
+        leerdoelen_list = cursor.fetchall()
         # Note that this method returns 2 variables!
-        return dropdown_leerdoelen_table_content, dropdown_leerdoelen_table_headers
+        return leerdoelen_list'''
 
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
