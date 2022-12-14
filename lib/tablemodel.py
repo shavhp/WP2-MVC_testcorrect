@@ -91,6 +91,13 @@ class DatabaseModel:
         auteurs_table_content = cursor.fetchall()
         return auteurs_table_content, auteurs_table_headers
 
+    def get_leerdoelen_not_null(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM vragen WHERE leerdoel IS NOT NULL")
+        leerdoelen_table_headers = [column_name[0] for column_name in cursor.description]
+        leerdoelen_table_content = cursor.fetchall()
+        return leerdoelen_table_content, leerdoelen_table_headers
+
     def get_htmlcodes(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
