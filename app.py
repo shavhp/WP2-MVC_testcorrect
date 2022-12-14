@@ -33,10 +33,11 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
-database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast'}
+database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
 
 @app.route('/form_login',methods=['POST','GET'])
 def login():
+    tables = dbm.get_table_list()
     name1=request.form['username']
     pwd=request.form['password']
     if name1 not in database:
@@ -45,7 +46,7 @@ def login():
         if database[name1]!=pwd:
             return render_template('login.html',info='Invalid Password')
         else:
-            return render_template('home.html',name=name1)
+            return render_template('tables.html',name=name1, table_list=tables)
 
 
 @app.route("/leerdoelen")
@@ -93,8 +94,9 @@ def filter_table(table_name, table_list):
     columns = dbm.get_columns(table_name)
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
 
+
 @app.route('/table_details/<table_name>/filter', methods =["GET", "POST"])
-def get_select_values(table_name):
+def get_select_values(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
     if request.method == "POST":
