@@ -60,15 +60,6 @@ def get_leerdoelen():
     return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, rij=rij)
 
 
-@app.route("/vragen")
-def get_vragen():
-    tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_vragen()
-        return render_template("invalid_vraag.html", rows=rows, columns=column_names, table_list=tables)
-
-
 @app.route("/auteurs")
 def get_auteurs():
     tables = dbm.get_table_list()
@@ -78,22 +69,11 @@ def get_auteurs():
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
-@app.route("/auteurs_not_null")
-def get_auteurs_not_null():
+@app.route("/vragen_null")
+def get_vragen_null():
     tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_auteurs()
-        return render_template("ingevulde_auteur.html", rows=rows, columns=column_names, table_list=tables)
-
-
-@app.route("/leerdoelen_not_null")
-def get_leerdoelen_not_null():
-    tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_leerdoelen()
-        return render_template("ingevulde_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+    rows, column_names = dbm.get_vragen_null()
+    return render_template("ingevulde_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
 # The table route displays the content of a table
