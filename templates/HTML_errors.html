@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-{% include "/navbar.html" %}
+{% include "/Navbar.html" %}
 
 
 <main>
 
-    <p>Alle rijen in de tabel <b>vragen</b> met lege of ongeldige <b>auteurs<b>:</p>
 
-<div class="container">
+
+    <p>Alle rijen in de tabel <b>vragen</b> met html codes zoals '&ltbr&gt' en  '&amp;nbsp;':</p>
+
+<div>
     <table>
         <thead>
         <tr>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <th>edit</th>
-            <th>ignore</th>
         </tr>
         </thead>
         <tbody>
@@ -33,14 +33,13 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
-        <td><button class="button-tabel">Ignore</button></td>
         </tr>
         {% endfor %}
-        </tbody>
 
+        </tbody>
     </table>
 </div>
 </main>
+
 </body>
 </html>

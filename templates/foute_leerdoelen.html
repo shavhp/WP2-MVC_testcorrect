@@ -7,7 +7,7 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
-    <link rel="stylesheet" href="/static/edit-button.css" type="text/css">
+    <link rel="stylesheet" href="/static/dropdown_leerdoelen.css" type="text/css">
 </head>
 <body>
 {% include "/Navbar.html" %}
@@ -26,7 +26,10 @@
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <th>edit</th>
+            <!-- Figure out if it is allowed to use labels as table headers -->
+            <th>
+                <label for="leerdoelen">Wijzig leerdoel</label>
+            </th>
             <th>ignore</th>
         </tr>
         </thead>
@@ -36,9 +39,26 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel" onClick="openForm()">Edit</button></td>
-        {% include "/edit-button-form.html" %}
-        <td><button class="button-tabel">Ignore</button></td>
+
+        <td>
+        <!-- This code is derived from https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Kies nieuw leerdoel</button>
+                <div id="myDropdown" class="dropdown-content">
+
+                    {% for row in rij %}
+                        {% for l in row %}
+                            <a>{{ l }}</a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </td>
+
+        <td>
+            <button class="button-tabel">Ignore</button>
+        </td>
         </tr>
 
         {% endfor %}
@@ -50,18 +70,29 @@
 
 
 
+<script>
+/* Script extracted from https://www.w3schools.com/howto/howto_js_popup_form.asp */
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
 
+/* Close the dropdown menu if the user clicks outside of it */
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 
 </body>
-
-<script>
-    function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-</script>
 </html>

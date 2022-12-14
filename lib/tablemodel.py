@@ -38,12 +38,22 @@ class DatabaseModel:
 
     def get_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT * FROM vragen WHERE id < 25 AND leerdoel NOT IN(SELECT id FROM leerdoelen) OR id < 25 AND leerdoel IS NULL")
+        # Creates a new table from the sql query
+        cursor.execute(f"SELECT * FROM vragen WHERE leerdoel NOT IN(SELECT id FROM leerdoelen) OR leerdoel IS NULL")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         leerdoelen_table_headers = [column_name[0] for column_name in cursor.description]
         leerdoelen_table_content = cursor.fetchall()
         # Note that this method returns 2 variables!
         return leerdoelen_table_content, leerdoelen_table_headers
+
+    def dropdown_leerdoelen(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"SELECT leerdoel FROM leerdoelen")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        leerdoelen_list = cursor.fetchall()
+        # Note that this method returns 2 variables!
+        return leerdoelen_list
 
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
@@ -68,9 +78,29 @@ class DatabaseModel:
 
     def get_auteurs(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT * FROM vragen WHERE auteur NOT IN(SELECT id FROM auteurs) or auteur is NULL")
+        cursor.execute(f"SELECT * FROM vragen WHERE auteur NOT IN(SELECT id FROM auteurs)")
         # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         auteurs_table_headers = [column_name[0] for column_name in cursor.description]
         auteurs_table_content = cursor.fetchall()
         return auteurs_table_content, auteurs_table_headers
 
+    def get_auteurs_not_null(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM vragen WHERE auteur IS NOT NULL")
+        auteurs_table_headers = [column_name[0] for column_name in cursor.description]
+        auteurs_table_content = cursor.fetchall()
+        return auteurs_table_content, auteurs_table_headers
+
+    def get_leerdoelen_not_null(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * FROM vragen WHERE leerdoel IS NOT NULL")
+        leerdoelen_table_headers = [column_name[0] for column_name in cursor.description]
+        leerdoelen_table_content = cursor.fetchall()
+        return leerdoelen_table_content, leerdoelen_table_headers
+
+    def get_htmlcodes(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
+        HTML_error_header = [column_name[0] for column_name in cursor.description]
+        HTML_error_content = cursor.fetchall()
+        return HTML_error_content, HTML_error_header

@@ -1,7 +1,8 @@
 import os.path
 import sys
+import sqlite3
 
-from flask import Flask,request,render_template
+from flask import Flask, request, render_template
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -33,18 +34,20 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
+
 database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
 
-@app.route('/form_login',methods=['POST','GET'])
+
+@app.route('/form_login', methods=['POST', 'GET'])
 def login():
     tables = dbm.get_table_list()
-    name1=request.form['username']
-    pwd=request.form['password']
+    name1 = request.form['username']
+    pwd = request.form['password']
     if name1 not in database:
-        return render_template('login.html',info='Invalid User')
+        return render_template('login.html', info='Invalid User')
     else:
         if database[name1]!=pwd:
-            return render_template('login.html',info='Invalid Password')
+            return render_template('login.html', info='Invalid Password')
         else:
             return render_template('tables.html',name=name1, table_list=tables)
 
@@ -52,10 +55,10 @@ def login():
 @app.route("/leerdoelen")
 def get_leerdoelen():
     tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_leerdoelen()
-        return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+    rows, column_names = dbm.get_leerdoelen()
+    rij = dbm.dropdown_leerdoelen()
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, rij=rij)
+
 
 @app.route("/vragen")
 def get_vragen():
@@ -65,6 +68,7 @@ def get_vragen():
         rows, column_names = dbm.get_vragen()
         return render_template("invalid_vraag.html", rows=rows, columns=column_names, table_list=tables)
 
+
 @app.route("/auteurs")
 def get_auteurs():
     tables = dbm.get_table_list()
@@ -72,6 +76,24 @@ def get_auteurs():
     if x == 0:
         rows, column_names = dbm.get_auteurs()
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
+
+
+@app.route("/auteurs_not_null")
+def get_auteurs_not_null():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_auteurs()
+        return render_template("ingevulde_auteur.html", rows=rows, columns=column_names, table_list=tables)
+
+
+@app.route("/leerdoelen_not_null")
+def get_leerdoelen_not_null():
+    tables = dbm.get_table_list()
+    x = 0
+    if x == 0:
+        rows, column_names = dbm.get_leerdoelen()
+        return render_template("ingevulde_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
 # The table route displays the content of a table
@@ -86,13 +108,16 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
         )
 
+
 # @app.route("")
+
 
 @app.route('/table_details/<table_name>/<table_list>/')
 def filter_table(table_name, table_list):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+
 
 
 @app.route('/table_details/<table_name>/filter', methods =["GET", "POST"])
@@ -106,7 +131,15 @@ def get_select_values(table_name=None):
        print(Value_3, Value_2)
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
 
-
+@app.route("/nbsp_error")
+def get_html_error():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_htmlcodes()
+    return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 if __name__ == "__main__":
+    # According to another student: datastructure of leerdoelen is tuple, should be converted to string
+    # for x in dbm.dropdown_leerdoelen():
+    #    print(str(x[0]))
+
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
