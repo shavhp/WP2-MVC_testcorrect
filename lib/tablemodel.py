@@ -86,4 +86,7 @@ class DatabaseModel:
 
     def get_htmlcodes(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
+        cursor.execute(f"SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
+        HTML_error_header = [column_name[0] for column_name in cursor.description]
+        HTML_error_content = cursor.fetchall()
+        return HTML_error_content, HTML_error_header
