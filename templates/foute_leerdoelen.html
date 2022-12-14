@@ -45,9 +45,12 @@
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Kies nieuw leerdoel</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+
+                    {% for row in rij %}
+                        {% for l in row %}
+                            <a>{{ l }}</a>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
 

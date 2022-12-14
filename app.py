@@ -56,7 +56,8 @@ def login():
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+    rij = dbm.dropdown_leerdoelen()
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, rij=rij)
 
 
 @app.route("/vragen")
