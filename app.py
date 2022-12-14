@@ -55,10 +55,8 @@ def login():
 @app.route("/leerdoelen")
 def get_leerdoelen():
     tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_leerdoelen()
-        return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+    rows, column_names = dbm.get_leerdoelen()
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
 @app.route("/vragen")
@@ -112,6 +110,12 @@ def get_select_values(table_name):
        Value_3 = request.form.get("Value_3")
        print(Value_3, Value_2)
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+
+@app.route("/nbsp_error")
+def get_html_error():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_htmlcodes()
+    return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 
 if __name__ == "__main__":
