@@ -35,12 +35,12 @@ dbm = DatabaseModel(DATABASE_FILE)
 def loginscherm():
     return render_template("login.html")
 
-
-database = {'Erik': 'beast', 'Kangyou': 'beast', 'Sharelle': 'beast', 'Dennis': 'beast'}
+database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
 def login():
+    tables = dbm.get_table_list()
     name1 = request.form['username']
     pwd = request.form['password']
     if name1 not in database:
@@ -49,7 +49,7 @@ def login():
         if database[name1]!=pwd:
             return render_template('login.html', info='Invalid Password')
         else:
-            return render_template('tables.html', name=name1)
+            return render_template('tables.html',name=name1, table_list=tables)
 
 
 @app.route("/leerdoelen")
@@ -99,8 +99,9 @@ def filter_table(table_name, table_list):
     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
 
 
-@app.route('/table_details/<table_name>/filter', methods=["GET", "POST"])
-def get_select_values(table_name):
+
+@app.route('/table_details/<table_name>/filter', methods =["GET", "POST"])
+def get_select_values(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
     if request.method == "POST":
@@ -115,7 +116,6 @@ def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
 
 if __name__ == "__main__":
     # According to another student: datastructure of leerdoelen is tuple, should be converted to string
