@@ -84,3 +84,6 @@ class DatabaseModel:
         auteurs_table_content = cursor.fetchall()
         return auteurs_table_content, auteurs_table_headers
 
+    def get_htmlcodes(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
