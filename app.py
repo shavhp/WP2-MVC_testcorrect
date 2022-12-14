@@ -73,7 +73,7 @@ def get_auteurs():
 def get_vragen_null():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_vragen_null()
-    return render_template("ingevulde_auteur.html", rows=rows, columns=column_names, table_list=tables)
+    return render_template("invalid_vragen.html", rows=rows, columns=column_names, table_list=tables)
 
 
 # The table route displays the content of a table
