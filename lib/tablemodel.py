@@ -36,6 +36,7 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
+    #Patronen > Leerdoelen
     def get_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
@@ -68,6 +69,7 @@ class DatabaseModel:
             table_list.append(table[0])
         return table_list
 
+    #Patronen > Auteurs
     def get_auteurs(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT * FROM vragen WHERE auteur NOT IN(SELECT id FROM auteurs)")
@@ -76,6 +78,7 @@ class DatabaseModel:
         auteurs_table_content = cursor.fetchall()
         return auteurs_table_content, auteurs_table_headers
 
+    #Data kwaliteit > Vragen tabel
     def get_vragen_null(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT * FROM vragen WHERE auteur IS NULL OR leerdoel IS NULL OR vraag IS NULL;")
@@ -83,6 +86,7 @@ class DatabaseModel:
         vraag_table_content = cursor.fetchall()
         return vraag_table_content, vragen_table_headers
 
+    #Data kwaliteit > HTML_errors
     def get_htmlcodes(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
