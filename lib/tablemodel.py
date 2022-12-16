@@ -36,6 +36,16 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return table_content, table_headers
 
+    def get_selected_content(self, table_name, columnnames, Start_values, Stop_values):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * from {table_name} Where {columnnames} BETWEEN {Start_values} AND {Stop_values} ORDER BY {columnnames} ASC")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        selected_headers = [column_name[0] for column_name in cursor.description]
+        selected_content = cursor.fetchall()
+        # Note that this method returns 2 variables!
+        return selected_content, selected_headers
+
+
     #Patronen > Leerdoelen
     def get_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()

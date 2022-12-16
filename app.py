@@ -100,16 +100,29 @@ def filter_table(table_name, table_list):
 
 
 
-@app.route('/table_details/<table_name>/filter', methods =["GET", "POST"])
+@app.route("/table_details/<table_name>/select", methods =["GET", "POST"] )
 def get_select_values(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
+    columnname = ""
+    start_value = ""
+    stop_value = ""
     if request.method == "POST":
-       # Value_1 = request.form.get("Value_1")
-       Value_2 = request.form.get("Value_2")
-       Value_3 = request.form.get("Value_3")
-       print(Value_3, Value_2)
-    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+        result = request.form
+        columnname = (result.get('POST'))
+        start_value = (result.get('Value_2'))
+        stop_value = (result.get('Value_3'))
+        rows, column_names = dbm.get_selected_content(table_name, columnname,start_value,stop_value)
+    return render_template('filter_column.html',
+                           column_names = column_names,
+                           rows=rows,
+                           columns=columns,
+                           table_name=table_name,
+                           table_list=tables,
+                           columnnames=columnname,
+                           Start_values=start_value,
+                           Stop_values=stop_value)
+
 
 @app.route("/nbsp_error")
 def get_html_error():

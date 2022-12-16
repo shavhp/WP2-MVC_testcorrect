@@ -1,22 +1,22 @@
 <nav>
     <ul>
-        <li><a href="/tables">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li>
-            <a href="">Patronen </a>
+            <a href="/leerdoelen">Patronen </a>
             <ul class = "dropdown">
                 <li><a href="/leerdoelen">Leerdoelen</a></li>
                 <li><a href="/auteurs">Auteurs</a></li>
             </ul>
         </li>
         <li>
-            <a href="">Data Kwaliteit </a>
+            <a href="/vragen_null">Data Kwaliteit </a>
             <ul class = "dropdown">
                 <li><a href="/vragen_null">Vragen (Empty errors)</a></li>
                 <li><a href="/nbsp_error">HTML_errors</a></li>
             </ul>
         </li>
         <li>
-            <a href="">Tabellen </a>
+            <a href="/auteurs">Tabellen </a>
             <ul class = "dropdown">
                 {% for table in table_list %}
                 <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
