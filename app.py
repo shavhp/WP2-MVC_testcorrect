@@ -2,7 +2,7 @@ import os.path
 import sys
 import sqlite3
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, session
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -34,7 +34,6 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
-
 database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
 
 
@@ -116,6 +115,11 @@ def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
+@app.route("/allHTML_error")
+def get_ALLhtml_error():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_Allhtmlcodes()
+    return render_template("ALLHTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 if __name__ == "__main__":
     # According to another student: datastructure of leerdoelen is tuple, should be converted to string
