@@ -66,6 +66,11 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return leerdoelen_list
 
+    '''def update_leerdoelen(self, new_leerdoel, new_id):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, new_id)")'''
+
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
         result = self.run_query(sql_query)
