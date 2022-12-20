@@ -23,7 +23,10 @@
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <th>edit</th>
+            <!-- Figure out if it is allowed to use labels as table headers -->
+            <th>
+                <label for="auteurs">Wijzig auteur</label>
+            </th>
             <th>ignore</th>
         </tr>
         </thead>
@@ -33,14 +36,39 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
-        <td><button class="button-tabel">Ignore</button></td>
+
+        <td>
+        <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
+            <div>
+                <div>
+                    <form action="/auteurs" method="post">
+                        <select name="update_auteur" id="auteurs">
+                            <option value="default">
+                                - Kies auteur -
+                            </option>
+                            {% for auteur in auteur_row %}
+                                <option value="{{ auteur[0] }}">
+                                {{  auteur[0] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+        </td>
+
+        <td>
+            <button class="button-tabel">Ignore</button>
+        </td>
         </tr>
+
         {% endfor %}
         </tbody>
 
     </table>
 </div>
 </main>
+
 </body>
 </html>
