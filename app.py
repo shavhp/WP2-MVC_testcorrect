@@ -51,12 +51,12 @@ def login():
             return render_template('tables.html',name=name1, table_list=tables)
 
 
-@app.route("/leerdoelen")
+@app.route("/leerdoelen", methods=["GET", "POST"])
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
-    rij = dbm.dropdown_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, rij=rij)
+    leerdoel_row = dbm.dropdown_leerdoelen()
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, leerdoel_row=leerdoel_row)
 
 
 @app.route("/auteurs")
