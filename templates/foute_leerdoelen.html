@@ -50,11 +50,9 @@
                                 - Kies leerdoel -
                             </option>
                             {% for l in leerdoel_row %}
-                                {% if loop.index %}
                                 <option value="{{ l[0] }}">
                                     {{  l[1] }}
                                 </option>
-                                {% endif %}
                             {% endfor %}
                         </select>
                     </form>
