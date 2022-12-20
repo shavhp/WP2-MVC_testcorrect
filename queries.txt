@@ -22,8 +22,10 @@ UPDATE {Tabel} SET {columm_name}='', {columm_name}='' WHERE id={ID};
 
 # Update queries test
 UPDATE vragen
+#Waar de vraag erin moet worden veranderd (hele text)
 SET vraag = 'Test edit'
 WHERE id = 7990
+#Een soort checksum om zeker te weten of de juiste entry wordt bijgewerkt
   AND leerdoel IS NULL
   AND vraag = ''
   AND auteur IS NULL
