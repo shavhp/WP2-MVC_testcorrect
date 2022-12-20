@@ -19,7 +19,7 @@
 
     <p>Alle rijen in de tabel <b>vragen</b> met ongeldige en ontbrekende leerdoelen:</p>
 
-<div class="container">
+ <div class="container">
     <table>
         <thead>
         <tr>
@@ -46,13 +46,15 @@
                 <div>
                     <form action="/leerdoelen" method="post">
                         <select name="update_leerdoel" id="leerdoelen">
-                            <option value="default">
+                            <option>
                                 - Kies leerdoel -
                             </option>
-                            {% for leerdoel in leerdoel_row %}
-                                <option value="{{ leerdoel[0] }}">
-                                {{  leerdoel[0] }}
+                            {% for l in leerdoel_row %}
+                                {% if loop.index %}
+                                <option value="{{ l[0] }}">
+                                    {{  l[1] }}
                                 </option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </form>

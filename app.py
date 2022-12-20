@@ -56,7 +56,9 @@ def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     leerdoel_row = dbm.dropdown_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, leerdoel_row=leerdoel_row)
+    # id_column = dbm.id_dropdown_leerdoelen()
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables,
+                           leerdoel_row=leerdoel_row)
 
 
 @app.route("/auteurs")
