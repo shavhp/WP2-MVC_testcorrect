@@ -11,6 +11,12 @@ VALUES (7992, null, '', null);
 
 
 #even proberen Erik :)
+
 SELECT * from {Tabel} Where {columm_name} BETWEEN {value_1} AND {value_2}
 SELECT name from pragma_table_info({Tabel})
+
+SELECT * FROM auteurs WHERE "medewerker" != 0 AND "medewerker" != 1
+
+UPDATE {Tabel} SET {columm_name}='', {columm_name}='' WHERE id={ID};
+
 

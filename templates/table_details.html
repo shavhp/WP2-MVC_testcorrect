@@ -9,13 +9,23 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
+
 {% include "/navbar.html" %}
 
 <main>
 
-    <p>Alle rijen in de tabel <b>{{ table_name
-}}</b>:</p>
+    <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
 <div class="grid-container">
+
+
+
+
+
+
+
+
+
+
 <div class="grid-item1">
     <table>
         <thead>
@@ -24,17 +34,19 @@
             <th>{{ column }}</th>
             {% endfor %}
             <th>edit</th>
-            <th>ignore</th>
+{#            <th>ignore</th>#}
         </tr>
         </thead>
         <tbody>
+
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
-        <td><button class="button-tabel">Ignore</button></td>
+{#            <td>{{ row[0] }}</td>    #}
+            <td><button type="button" class="button-tabel" data-toggle="modal" data-target="#update_book_{{ row[0] }}">Edit</button></td>
+{#            <td><button class="button-tabel" onclick="return confirm('Function is not available yet')">Ignore</button></td>#}
         </tr>
         {% endfor %}
 
@@ -68,10 +80,6 @@
 
 </div>
 </main>
-
-
-
-
 
 </body>
 
