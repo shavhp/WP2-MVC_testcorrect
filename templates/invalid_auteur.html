@@ -16,7 +16,7 @@
 
     <p>Alle rijen in de tabel <b>vragen</b> met lege of ongeldige <b>auteurs<b>:</p>
 
-<div class="container">
+ <div class="container">
     <table>
         <thead>
         <tr>
@@ -43,19 +43,18 @@
                 <div>
                     <form action="/auteurs" method="post">
                         <select name="update_auteur" id="auteurs">
-                            <option value="default">
+                            <option>
                                 - Kies auteur -
                             </option>
-                            {% for auteur in auteur_row %}
-                                <option value="{{ auteur[0] }}">
-                                {{  auteur[0] }}
+                            {% for a in voornaam_row %}
+                                <option value="{{ a[0] }}">
+                                    {{  a[1] }}
                                 </option>
                             {% endfor %}
                         </select>
                     </form>
                 </div>
             </div>
-
         </td>
 
         <td>
@@ -65,10 +64,8 @@
 
         {% endfor %}
         </tbody>
-
     </table>
 </div>
 </main>
-
 </body>
 </html>

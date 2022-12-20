@@ -20,3 +20,12 @@ SELECT * FROM auteurs WHERE "medewerker" != 0 AND "medewerker" != 1
 UPDATE {Tabel} SET {columm_name}='', {columm_name}='' WHERE id={ID};
 
 
+# Update queries test
+UPDATE vragen
+SET vraag = 'Test edit'
+WHERE id = 7990
+  AND leerdoel IS NULL
+  AND vraag = ''
+  AND auteur IS NULL
+  AND rowid = 7990;
+
