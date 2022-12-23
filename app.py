@@ -1,6 +1,6 @@
 import os.path
-import sys
-import sqlite3
+# import sys
+# import sqlite3
 
 from flask import Flask, request, render_template, redirect, session
 
@@ -34,7 +34,9 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
-database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
+
+
+database = {'Erik': 'beast', 'Kangyou': 'beast', 'Sharelle': 'beast', 'Dennis': 'beast', '': ''}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
@@ -45,10 +47,10 @@ def login():
     if name1 not in database:
         return render_template('login.html', info='Invalid User')
     else:
-        if database[name1]!=pwd:
+        if database[name1] != pwd:
             return render_template('login.html', info='Invalid Password')
         else:
-            return render_template('tables.html',name=name1, table_list=tables)
+            return render_template('tables.html', name=name1, table_list=tables)
 
 
 @app.route("/leerdoelen", methods=["GET", "POST"])
@@ -93,15 +95,14 @@ def table_content(table_name=None):
 # @app.route("")
 
 
-@app.route('/table_details/<table_name>/<table_list>/')
-def filter_table(table_name, table_list):
-    tables = dbm.get_table_list()
-    columns = dbm.get_columns(table_name)
-    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
+# @app.route('/table_details/<table_name>/<table_list>/')
+# def filter_table(table_name, table_list):
+#     tables = dbm.get_table_list()
+#     columns = dbm.get_columns(table_name)
+#     return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
 
 
-
-@app.route("/table_details/<table_name>/select", methods =["GET", "POST"] )
+@app.route("/table_details/<table_name>/select", methods=["GET", "POST"])
 def get_select_values(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
@@ -113,9 +114,9 @@ def get_select_values(table_name=None):
         columnname = (result.get('POST'))
         start_value = (result.get('Value_2'))
         stop_value = (result.get('Value_3'))
-        rows, column_names = dbm.get_selected_content(table_name, columnname,start_value,stop_value)
+        rows, column_names = dbm.get_selected_content(table_name, columnname, start_value, stop_value)
     return render_template('filter_column.html',
-                           column_names = column_names,
+                           column_names=column_names,
                            rows=rows,
                            columns=columns,
                            table_name=table_name,
@@ -130,11 +131,14 @@ def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
+
+
 @app.route("/allHTML_error")
-def get_ALLhtml_error():
+def get_allhtml_error():
     tables = dbm.get_table_list()
-    rows, column_names = dbm.get_Allhtmlcodes()
+    rows, column_names = dbm.get_allhtmlcodes()
     return render_template("ALLHTML_errors.html", rows=rows, columns=column_names, table_list=tables)
+
 
 if __name__ == "__main__":
     # According to another student: datastructure of leerdoelen is tuple, should be converted to string
