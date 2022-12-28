@@ -51,15 +51,20 @@ def login():
             return render_template('tables.html',name=name1, table_list=tables)
 
 
-@app.route("/leerdoelen", methods=["GET", "POST"])
+@app.route("/leerdoelen", methods=["GET"])
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     leerdoel_row = dbm.dropdown_leerdoelen()
-    # id_column = dbm.id_dropdown_leerdoelen()
     return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables,
                            leerdoel_row=leerdoel_row)
 
+
+'''@app.route("/update_leerdoelen", methods=["POST"])
+def edit_leerdoel():
+
+    if request.method == "POST":
+        leerdoel_row = request.form['leerdoel_row']'''
 
 @app.route("/auteurs")
 def get_auteurs():

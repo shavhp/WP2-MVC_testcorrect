@@ -65,16 +65,11 @@ class DatabaseModel:
         leerdoelen_list = cursor.fetchall()
         return leerdoelen_list
 
-    '''def id_dropdown_leerdoelen(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute(f"SELECT id FROM leerdoelen")
-        id_leerdoelen = cursor.fetchall()
-        return id_leerdoelen'''
-
-    '''def update_leerdoelen(self, new_leerdoel, new_id):
+    '''def update_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
-        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, new_id)")'''
+        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, new_id)")
+        conn.commit()'''
 
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
