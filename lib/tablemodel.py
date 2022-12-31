@@ -69,7 +69,7 @@ class DatabaseModel:
     def update_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
-        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, new_id)")
+        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, selected_id)")
         # Commits changes to database
         cursor.commit()
 
