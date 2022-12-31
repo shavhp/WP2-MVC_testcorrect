@@ -61,15 +61,17 @@ class DatabaseModel:
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
         cursor.execute(f"SELECT * FROM leerdoelen")
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         leerdoelen_list = cursor.fetchall()
         return leerdoelen_list
 
-    '''def update_leerdoelen(self):
+    # Function partially inspired by
+    # https://flask.palletsprojects.com/en/2.2.x/tutorial/blog/
+    def update_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
         cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, new_id)")
-        conn.commit()'''
+        # Commits changes to database
+        cursor.commit()
 
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
