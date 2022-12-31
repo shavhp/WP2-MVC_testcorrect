@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Database displayer</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+
+</head>
+<body>
+{% include "Navbar.html" %}
+
+<main>
+    <p>
+        Update hier het leerdoel van vraag met ID {{  }}
+    </p>
+
+            <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
+            <div>
+                <div>
+                    <form action="/leerdoelen/<int:vraag_id>/update" method="post">
+{#                        <input type="hidden" name="leerdoel" value="{{ l[0] }}">#}
+                        <label for="leerdoelen"></label>
+                        <select name="update_leerdoel" id="leerdoelen">
+                            <option>
+                                - Kies leerdoel -
+                            </option>
+                            {% for l in leerdoel_row %}
+                                <option value="{{ l[0] }}">
+                                    {{  l[1] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    <br/> <br/>
+                    <input type="submit" value="Opslaan" onclick="return confirm('Leerdoel aanpassen?');">
+                    </form>
+                </div>
+            </div>
+
+</main>
