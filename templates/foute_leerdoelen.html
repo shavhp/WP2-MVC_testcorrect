@@ -32,20 +32,13 @@
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
-{#            {% if field == rows[1] %}#}
-{#                <td><a href="{{ rows[1] }}">{{ rows[1] }}</a></td>#}
-{#            {% else %}#}
-{#                <td>{{ field }}</td>#}
-{#            {% endif %}#}
-
             {% for field in row %}
                 {% if loop.index == 2 %}
-                <td><a href="{{ field }}">{{ field }}</a></td>
+                    <td><a href="/leerdoelen/edit/{{ row[0] }}">{{ field }}</a></td>
                 {% else %}
-                <td>{{ field }}</td>
+                    <td>{{ field }}</td>
                 {% endif %}
             {% endfor %}
-
         <td>
             <button class="button-tabel">Ignore</button>
         </td>

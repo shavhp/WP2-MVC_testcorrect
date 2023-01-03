@@ -13,15 +13,16 @@
 {% include "Navbar.html" %}
 
 <main>
+
     <p>
-        Update hier het leerdoel van vraag met ID {{  }}
+        Update hier het leerdoel van vraag ?
     </p>
 
             <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
             <div>
                 <div>
-                    <form action="/leerdoelen/<int:vraag_id>/update" method="post">
-{#                        <input type="hidden" name="leerdoel" value="{{ l[0] }}">#}
+{#                /leerdoelen/edit, overeenkomen met route /leerdoelen/edit/nog iets#}
+                    <form action="/leerdoelen" method="post">
                         <label for="leerdoelen"></label>
                         <select name="update_leerdoel" id="leerdoelen">
                             <option>

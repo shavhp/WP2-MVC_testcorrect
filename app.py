@@ -53,20 +53,19 @@ def login():
             return render_template('tables.html', name=name1, table_list=tables)
 
 
-@app.route("/leerdoelen", methods=["GET"])
+@app.route("/leerdoelen")
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
-    leerdoel_row = dbm.dropdown_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables,
-                           leerdoel_row=leerdoel_row)
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
-'''@app.route("/update_leerdoelen", methods=["POST"])
-def edit_leerdoel():
+# /leerdoelen/edit, moet overeenkomen met update_invalid_leerdoelen.html
+@app.route("/leerdoelen/edit/<id>")
+def update_leerdoel(id=None):
+    dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel)
 
-    if request.method == "POST":
-        leerdoel_row = request.form['leerdoel_row']'''
 
 @app.route("/auteurs")
 def get_auteurs():
@@ -146,8 +145,4 @@ def get_allhtml_error():
 
 
 if __name__ == "__main__":
-    # According to another student: datastructure of leerdoelen is tuple, should be converted to string
-    # for x in dbm.dropdown_leerdoelen():
-    #    print(str(x[0]))
-
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
