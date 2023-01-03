@@ -13,9 +13,9 @@
 {% include "Navbar.html" %}
 
 <main>
-
+{# Verder onderzoeken hoe je eventueel vraagitem info kan weergeven met Jinja #}
     <p>
-        Update hier het leerdoel van vraag
+        Update hier het leerdoel.
     </p>
 
             <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
@@ -37,6 +37,8 @@
                     <br/> <br/>
                     <input type="submit" value="Opslaan" onclick="return confirm('Leerdoel aanpassen?');">
                     </form>
+{#                Annuleerknop laten terugkeren naar vorige route/foute leerdoelen tabel #}
+                    <button>Annuleren</button>
                 </div>
             </div>
 

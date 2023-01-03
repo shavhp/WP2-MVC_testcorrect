@@ -53,6 +53,7 @@ def login():
             return render_template('tables.html', name=name1, table_list=tables)
 
 
+# Route to display vraagitems with invalid and null leerdoelen
 @app.route("/leerdoelen")
 def get_leerdoelen():
     tables = dbm.get_table_list()
@@ -60,11 +61,14 @@ def get_leerdoelen():
     return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
+# Route to edit the leerdoel with a dropdown
 # /leerdoelen/edit, moet overeenkomen met update_invalid_leerdoelen.html
 @app.route("/leerdoelen/edit/<id>")
 def update_leerdoel(id=None):
+    rows, column_names = dbm.get_leerdoelen()
     dropdown_leerdoel = dbm.dropdown_leerdoelen()
-    return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel)
+    return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
+                           column_names=column_names)
 
 
 @app.route("/auteurs")
