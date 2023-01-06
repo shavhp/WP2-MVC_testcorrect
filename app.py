@@ -53,6 +53,12 @@ def login():
             return render_template('tables.html', name=name1, table_list=tables)
 
 
+@app.route('/home')
+def home_screen():
+    tables = dbm.get_table_list()
+    return render_template('tables.html', table_list=tables)
+
+
 # Route to display vraagitems with invalid and null leerdoelen
 @app.route("/leerdoelen")
 def get_leerdoelen():
