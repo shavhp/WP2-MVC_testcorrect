@@ -71,6 +71,15 @@ def update_leerdoel(id=None):
                            column_names=column_names)
 
 
+@app.route("/leerdoelen/edit/choose/<id>", methods=["GET", "POST"])
+def update_leerdoel_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_leerdoel = request.form['update_leerdoel']
+        dbm.update_leerdoelen(new_leerdoel, item_id)
+        return redirect('/leerdoelen')
+
+
 @app.route("/auteurs")
 def get_auteurs():
     tables = dbm.get_table_list()

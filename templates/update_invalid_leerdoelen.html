@@ -22,7 +22,7 @@
             <div>
                 <div>
 {#                /leerdoelen/edit, overeenkomen met route /leerdoelen/edit/nog iets#}
-                    <form action="/leerdoelen" method="post">
+                    <form action="/leerdoelen/edit/choose/<id>" method="post">
                         <label for="leerdoelen"></label>
                         <select name="update_leerdoel" id="leerdoelen">
                             <option>
@@ -35,7 +35,8 @@
                             {% endfor %}
                         </select>
                     <br/> <br/>
-                    <input type="submit" value="Opslaan" onclick="return confirm('Leerdoel aanpassen?');">
+                    <input type="hidden" name="selected_id" value="{{ id }}">
+                    <input type="submit" value="Opslaan">
                     </form>
                     <a href="/leerdoelen"><button>Annuleren</button></a>
                 </div>

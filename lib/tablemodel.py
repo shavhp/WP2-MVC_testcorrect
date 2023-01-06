@@ -66,12 +66,13 @@ class DatabaseModel:
 
     # Function partially inspired by
     # https://flask.palletsprojects.com/en/2.2.x/tutorial/blog/
-    def update_leerdoelen(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
+    def update_leerdoelen(self, new_leerdoel, selected_id):
+        connection = sqlite3.connect(self.database_file)
+        cursor = connection.cursor()
         # Creates a new table from the sql query
-        cursor.execute(f"UPDATE vragen SET leerdoel = ? WHERE id = ?, (new_leerdoel, selected_id)")
+        cursor.execute(f"UPDATE vragen SET leerdoel = {new_leerdoel} WHERE id = {selected_id}")
         # Commits changes to database
-        cursor.commit()
+        connection.commit()
 
     def get_columns(self, table):
         sql_query = "PRAGMA table_info({})".format(table)
