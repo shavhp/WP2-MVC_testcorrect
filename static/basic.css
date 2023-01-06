@@ -1,4 +1,5 @@
 /* Basic.css  - https://vladocar.github.io/Basic.css/ */
+/* Style inspired by https://www.test-correct.nl/ */
 
 * {box-sizing: border-box}
 
@@ -24,9 +25,9 @@
 @media (prefers-color-scheme: dark) {
 	:root {
     --c1: #ffffff;
-    --c2: #393941;
-    --c3: #393941;
-    --c4: #fff;
+    --c2: #f0f2f5;
+    --c3: #f0f2f5;
+    --c4: #041f74;
 	}
 }
 
@@ -50,13 +51,13 @@ body {
 }
 
 /* Navigation Menu */
-nav { margin:0px auto 500px; width:100%; height:auto; display:inline-block; background:var(--c1); position:fixed; top:0; }
+nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:inline-block; background:var(--c1); position:fixed; top:0; }
 nav ul { margin:0;padding:0; list-style-type:none; float:left; display:inline-block; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
 li > a:after { content: ' »'; } /* Change this in order to change the Dropdown symbol */
 li > a:only-child:after { content: ''; }
-nav ul li a { padding:20px; display:inline-block; color: #041f74; text-decoration:none; font-weight:bold; }
-nav ul li a:hover { opacity:0.5; color: #004df5; }
+nav ul li a { padding:20px; display:inline-block; color: #041f74; text-decoration:none; font-weight:bold; font-size: 18px }
+nav ul li a:hover { opacity:0.5; color: #004df5; cursor: pointer }
 nav ul li ul { display:none; position:absolute; left:0; background:var(--c1); float:left; }
 nav ul li ul li { width:100%; border-bottom:1px solid rgba(255,255,255,.3); }
 nav ul li:hover ul { display:block; }

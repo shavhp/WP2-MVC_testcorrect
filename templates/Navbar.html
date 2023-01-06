@@ -2,25 +2,25 @@
     <ul>
         <li><a href="/home">Home</a></li>
         <li>
-            <a href="/leerdoelen">Patronen </a>
+            <a>Ongeldige waarden</a>
             <ul class = "dropdown">
-                <li><a href="/leerdoelen">Leerdoelen</a></li>
-                <li><a href="/auteurs">Auteurs</a></li>
+                <li><a href="/leerdoelen">Ongeldige leerdoelen</a></li>
+                <li><a href="/auteurs">Ongeldige auteurs</a></li>
             </ul>
         </li>
         <li>
-            <a href="/vragen_null">Data Kwaliteit </a>
+            <a>Vraagitems met:</a>
             <ul class = "dropdown">
-                <li><a href="/vragen_null">Vragen (Empty errors)</a></li>
-                <li><a href="/nbsp_error">HTML_errors</a></li>
-                <li><a href="/allHTML_error">ALLHTML_errors</a></li>
+                <li><a href="/vragen_null">Lege waarden</a></li>
+                <li><a href="/nbsp_error">Twee HTML-fouten</a></li>
+                <li><a href="/allHTML_error">Meer HTML-fouten</a></li>
             </ul>
         </li>
         <li>
-            <a href="/table_details/auteurs">Tabellen </a>
+            <a>Database</a>
             <ul class = "dropdown">
                 {% for table in table_list %}
-                <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
+                <li><a href="/table_details/{{ table }}"> {{ table |capitalize }} </a></li>
                 {% endfor %}
             </ul>
         </li>
