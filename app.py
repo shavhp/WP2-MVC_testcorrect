@@ -68,7 +68,6 @@ def get_leerdoelen():
 
 
 # Route to edit the leerdoel with a dropdown
-# /leerdoelen/edit, moet overeenkomen met update_invalid_leerdoelen.html
 @app.route("/leerdoelen/edit/<id>")
 def update_leerdoel(id=None):
     rows, column_names = dbm.get_leerdoelen()
