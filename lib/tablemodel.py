@@ -66,6 +66,7 @@ class DatabaseModel:
 
     # Function partially inspired by
     # https://flask.palletsprojects.com/en/2.2.x/tutorial/blog/
+    # https://www.tutorialspoint.com/what-is-python-commit-method-in-mysql
     def update_leerdoelen(self, new_leerdoel, selected_id):
         connection = sqlite3.connect(self.database_file)
         cursor = connection.cursor()
