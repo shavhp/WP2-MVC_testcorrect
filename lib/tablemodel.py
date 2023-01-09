@@ -120,3 +120,11 @@ class DatabaseModel:
         allhtml_error_header = [column_name[0] for column_name in cursor.description]
         all_error_content = cursor.fetchall()
         return all_error_content, allhtml_error_header
+
+    def update_vragen(self, vraag, id):
+        connection = sqlite3.connect(self.database_file)
+        cursor = connection.cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"UPDATE vragen SET vraag = {vraag} WHERE id = {id}")
+        # Commits changes to database
+        connection.commit()

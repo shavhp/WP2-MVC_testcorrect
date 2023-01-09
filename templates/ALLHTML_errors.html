@@ -14,8 +14,6 @@
 
 <main>
 
-
-
     <p>Alle rijen in de tabel <b>vragen</b> met html codes :</p>
 
 <div>
@@ -31,7 +29,7 @@
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td>{{ field }}</td>
+            <td><a href="/update_web/{{ row[0] }}">{{ field }}</a></td>
             {% endfor %}
         </tr>
         {% endfor %}
@@ -39,7 +37,6 @@
         </tbody>
     </table>
 </div>
-</main>
 
 </body>
 </html>

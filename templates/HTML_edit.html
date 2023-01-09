@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Database displayer</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+</head>
+<body>
+{% include "/Navbar.html" %}
+
+
+<main>
+
+    <p>Edit vraag :</p>
+
+    <form action="/update_vraag" method="post">
+        <label for="vraag">Vraag :</label>
+        <input type="text" name="vraag" value="{{vraag}}" required>
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
+</main>
+
+</body>
+</html>
