@@ -16,7 +16,7 @@
 
     <p>Edit vraag :</p>
 
-    <form action="/update_vraag" method="post">
+    <form action="/update_vraag/{{id}}" method="post">
         <label for="vraag">Vraag :</label>
         <input type="text" name="vraag" value="{{vraag}}" required>
         <input type="hidden" name="id" value="{{id}}">

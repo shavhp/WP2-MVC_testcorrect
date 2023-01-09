@@ -121,10 +121,10 @@ class DatabaseModel:
         all_error_content = cursor.fetchall()
         return all_error_content, allhtml_error_header
 
-    def update_vragen(self, vraag, id):
+    def update_vragen(self, id, vraag):
         connection = sqlite3.connect(self.database_file)
         cursor = connection.cursor()
         # Creates a new table from the sql query
-        cursor.execute(f"UPDATE vragen SET vraag = {vraag} WHERE id = {id}")
+        cursor.execute("UPDATE vragen SET vraag = ? WHERE id = ?", (vraag, id))
         # Commits changes to database
         connection.commit()

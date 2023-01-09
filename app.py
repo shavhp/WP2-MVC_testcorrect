@@ -148,13 +148,6 @@ def get_select_values(table_name=None):
                            Stop_values=stop_value)
 
 
-@app.route("/nbsp_error")
-def get_html_error():
-    tables = dbm.get_table_list()
-    rows, column_names = dbm.get_htmlcodes()
-    return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
-
 @app.route("/allHTML_error")
 def get_allhtml_error():
     tables = dbm.get_table_list()
@@ -163,17 +156,19 @@ def get_allhtml_error():
 
 @app.route("/update_web/<id>")
 def update_HTML_errors(id = None):
-    rows, column_names = dbm.get_htmlcodes()
+    rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
                            column_names=column_names)
 
-@app.route("/update_vraag/<id>", methods=["GET", "POST"])
+@app.route("/update_vraag/<id>", methods=["POST"])
 def update_de_vragen(id):
     if request.method == "POST":
         id_item = request.form['id']
         vragen = request.form['vraag']
         dbm.update_vragen(id_item, vragen)
         return redirect("/allHTML_error")
+
+
 
 if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)
