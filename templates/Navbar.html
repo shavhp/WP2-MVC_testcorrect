@@ -3,26 +3,28 @@
         <li><img src="/static/test-correct.png"></li>
         <li><a href="/home">Home</a></li>
         <li>
-            <a>Ongeldige waarden</a>
+            <a>Auteurs</a>
             <ul class = "dropdown">
-                <li><a href="/leerdoelen">Ongeldige leerdoelen</a></li>
+                <li><a href="/table_details/{{ table_list[0] }}">Alle auteurs</a></li>
                 <li><a href="/auteurs">Ongeldige auteurs</a></li>
                 <li><a href="/auteur_text">Ongeldige medewerkers</a></li>
+                <li><a href="/auteurs_null">Lege auteurs</a></li>
             </ul>
         </li>
         <li>
-            <a>Vraagitems met:</a>
+            <a>Leerdoelen</a>
             <ul class = "dropdown">
-                <li><a href="/vragen_null">Lege waarden</a></li>
+                <li><a href="/table_details/{{ table_list[1] }}">Alle leerdoelen</a></li>
+                <li><a href="/leerdoelen_invalid">Ongeldige leerdoelen</a></li>
+                <li><a href="/leerdoelen_null">Lege leerdoelen</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a>Vragen</a>
+            <ul class = "dropdown">
+                <li><a href="/table_details/{{ table_list[2] }}">Alle vragen</a></li>
                 <li><a href="/allHTML_error">HTML-fouten</a></li>
-            </ul>
-        </li>
-        <li>
-            <a>Database</a>
-            <ul class = "dropdown">
-                {% for table in table_list %}
-                <li><a href="/table_details/{{ table }}"> {{ table |capitalize }} </a></li>
-                {% endfor %}
             </ul>
         </li>
     </ul>

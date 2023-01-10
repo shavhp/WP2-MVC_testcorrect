@@ -98,12 +98,19 @@ class DatabaseModel:
         return auteurs_table_content, auteurs_table_headers
 
     # Data kwaliteit > Vragen tabel
-    def get_vragen_null(self):
+    def get_none_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("SELECT * FROM vragen WHERE auteur IS NULL OR leerdoel IS NULL OR vraag IS NULL;")
-        vragen_table_headers = [column_name[0] for column_name in cursor.description]
-        vraag_table_content = cursor.fetchall()
-        return vraag_table_content, vragen_table_headers
+        cursor.execute("SELECT * FROM vragen WHERE leerdoel IS NULL")
+        leerdoel_headers = [column_name[0] for column_name in cursor.description]
+        leerdoel_content = cursor.fetchall()
+        return leerdoel_content, leerdoel_headers
+
+    def get_none_auteurs(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute("SELECT * FROM vragen WHERE auteur IS NULL")
+        auteur_headers = [column_name[0] for column_name in cursor.description]
+        auteur_content = cursor.fetchall()
+        return auteur_content, auteur_headers
 
     # Data kwaliteit > HTML_errors
     def get_htmlcodes(self):
