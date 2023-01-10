@@ -183,7 +183,7 @@ def update_de_vragen(id):
 def get_auteur_text():
     tables = dbm.get_table_list()
     rows, columns = dbm.get_auteur_string()
-    return render_template("auteur_strings.html", tables=tables, rows=rows, columns=columns)
+    return render_template("auteur_strings.html", table_list=tables, rows=rows, columns=columns)
 
 
 if __name__ == "__main__":
