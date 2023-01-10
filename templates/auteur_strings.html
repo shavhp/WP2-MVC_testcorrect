@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Database displayer</title>
+    <meta name="description" content="Simple database display"/>
+    <meta name="author" content="Rotterdam Academy"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+
+</head>
+<body>
+{% include "Navbar.html" %}
+
+
+<main>
+
+
+
+    <p>Alle rijen in de tabel <b>auteurs</b> waarbij de kolom medewerkers tekst bevat.</p>
+
+ <div class="container">
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
+            <th>uitzondering</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr class="active-row">
+            {% for field in row %}
+                <td>{{ field }}</td>
+            {% endfor %}
+        <td>
+            <button class="button-tabel">Ignore</button>
+        </td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+</main>
+
+</body>
+</html>

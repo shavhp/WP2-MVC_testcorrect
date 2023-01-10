@@ -128,3 +128,15 @@ class DatabaseModel:
         cursor.execute("UPDATE vragen SET vraag = ? WHERE id = ?", (vraag, id))
         # Commits changes to database
         connection.commit()
+
+    # Query derived from
+    # https://stackoverflow.com/questions/21124212/sqlite-check-if-text-field-has-any-alphabetical-chars-in-it
+    def get_auteur_string(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"SELECT * FROM auteurs WHERE medewerker GLOB '*[A-Za-z]*'")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        auteur_headers = [column_name[0] for column_name in cursor.description]
+        auteur_content = cursor.fetchall()
+        # Note that this method returns 2 variables!
+        return auteur_content, auteur_headers

@@ -155,10 +155,11 @@ def get_allhtml_error():
     return render_template("ALLHTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 @app.route("/update_web/<id>")
-def update_HTML_errors(id = None):
+def update_HTML_errors(id=None):
     rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
                            column_names=column_names)
+
 
 @app.route("/update_vraag/<id>", methods=["POST"])
 def update_de_vragen(id):
@@ -168,6 +169,12 @@ def update_de_vragen(id):
         dbm.update_vragen(id_item, vragen)
         return redirect("/allHTML_error")
 
+
+@app.route("/auteur_text")
+def get_auteur_text():
+    tables = dbm.get_table_list()
+    rows, columns = dbm.get_auteur_string()
+    return render_template("auteur_strings.html", tables=tables, rows=rows, columns=columns)
 
 
 if __name__ == "__main__":
