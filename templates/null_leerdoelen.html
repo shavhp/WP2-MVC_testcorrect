@@ -14,7 +14,9 @@
 
 <main>
 
-    <p>Alle rijen in de tabel <b>vragen</b> met lege <b>leerdoelen</b>.</p>
+    <p>Alle rijen in de tabel <b>vragen</b> met lege <b>leerdoelen</b>.
+    <br/>
+    Klik op een leerdoel om het aan te passen.</p>
 
 <div class="container">
     <table>
@@ -31,7 +33,11 @@
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td>{{ field }}</td>
+                {% if loop.index == 2 %}
+                    <td><a href="/leerdoelen_null/edit/{{ row[0] }}">{{ field }}</a></td>
+                {% else %}
+                    <td>{{ field }}</td>
+                {% endif %}
             {% endfor %}
         <td><button class="button-tabel">Ignore</button></td>
         </tr>

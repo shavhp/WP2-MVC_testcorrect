@@ -59,7 +59,7 @@ def home_screen():
     return render_template('tables.html', table_list=tables)
 
 
-# Route to display vraagitems with invalid and null leerdoelen
+# Routes to display vraagitems with invalid leerdoelen
 @app.route("/leerdoelen_invalid")
 def get_leerdoelen():
     tables = dbm.get_table_list()
@@ -86,6 +86,33 @@ def update_leerdoel_choose(id):
         return redirect('/leerdoelen_invalid')
 
 
+# Routes to display vraagitems with null leerdoelen
+@app.route("/leerdoelen_null")
+def get_leerdoelen_null():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_none_leerdoelen()
+    return render_template("null_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+
+
+# Route to edit the leerdoel with a dropdown
+@app.route("/leerdoelen_null/edit/<id>")
+def update_null_leerdoel(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_leerdoelen()
+    dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    return render_template("update_null_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
+                           column_names=column_names, table_list=tables)
+
+
+@app.route("/leerdoelen_null/edit/choose/<id>", methods=["GET", "POST"])
+def update_null_leerdoel_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_leerdoel = request.form['update_leerdoel']
+        dbm.update_leerdoelen(new_leerdoel, item_id)
+        return redirect('/leerdoelen_null')
+
+
 @app.route("/auteurs")
 def get_auteurs():
     tables = dbm.get_table_list()
@@ -93,13 +120,6 @@ def get_auteurs():
     if x == 0:
         rows, column_names = dbm.get_auteurs()
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
-
-
-@app.route("/leerdoelen_null")
-def get_leerdoelen_null():
-    tables = dbm.get_table_list()
-    rows, column_names = dbm.get_none_leerdoelen()
-    return render_template("null_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
 @app.route("/auteurs_null")
