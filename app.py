@@ -113,6 +113,33 @@ def update_null_leerdoel_choose(id):
         return redirect('/leerdoelen_null')
 
 
+# Routes to display vraagitems with null auteurs
+@app.route("/auteurs_null")
+def get_auteurs_null():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_none_auteurs()
+    return render_template("null_auteurs.html", rows=rows, columns=column_names, table_list=tables)
+
+
+# Route to edit the auteur with a dropdown
+@app.route("/auteurs_null/edit/<id>")
+def update_null_auteur(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_auteurs()
+    dropdown_auteur = dbm.dropdown_auteurs()
+    return render_template("update_null_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
+                           column_names=column_names, table_list=tables)
+
+@app.route("/auteurs_null/edit/choose/<id>", methods=["GET", "POST"])
+def update_null_auteur_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_auteur = request.form['update_auteur']
+        dbm.update_null_auteur(new_auteur, item_id)
+        return redirect('/auteurs_null')
+
+
+
 @app.route("/auteurs")
 def get_auteurs():
     tables = dbm.get_table_list()
@@ -122,11 +149,6 @@ def get_auteurs():
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
-@app.route("/auteurs_null")
-def get_auteurs_null():
-    tables = dbm.get_table_list()
-    rows, column_names = dbm.get_none_auteurs()
-    return render_template("null_auteurs.html", rows=rows, columns=column_names, table_list=tables)
 
 
 # The table route displays the content of a table

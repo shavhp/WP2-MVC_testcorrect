@@ -64,6 +64,13 @@ class DatabaseModel:
         leerdoelen_list = cursor.fetchall()
         return leerdoelen_list
 
+    def dropdown_auteurs(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"SELECT * FROM auteurs")
+        auteurs_list = cursor.fetchall()
+        return auteurs_list
+
     # Function partially inspired by
     # https://flask.palletsprojects.com/en/2.2.x/tutorial/blog/
     # https://www.tutorialspoint.com/what-is-python-commit-method-in-mysql
@@ -72,6 +79,14 @@ class DatabaseModel:
         cursor = connection.cursor()
         # Creates a new table from the sql query
         cursor.execute(f"UPDATE vragen SET leerdoel = {new_leerdoel} WHERE id = {selected_id}")
+        # Commits changes to database
+        connection.commit()
+
+    def update_null_auteur(self, new_auteur, selected_id):
+        connection = sqlite3.connect(self.database_file)
+        cursor = connection.cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"UPDATE vragen SET auteur = {new_auteur} WHERE id = {selected_id}")
         # Commits changes to database
         connection.commit()
 
