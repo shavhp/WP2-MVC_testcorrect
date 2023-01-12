@@ -26,7 +26,7 @@
             {% for column in columns %}
                 <th>{{ column }}</th>
             {% endfor %}
-            <th>uitzondering</th>
+            <th>info</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                 <td>{{ field }}</td>
             {% endfor %}
         <td>
-            <button class="button-tabel">Ignore</button>
+            <a href="https://www.test-correct.nl/?vraag={{ row[0] }}"><button>Meer info</button></a>
         </td>
         </tr>
 
