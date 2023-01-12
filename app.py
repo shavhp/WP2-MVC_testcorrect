@@ -160,6 +160,7 @@ def update_null_auteur(id=None):
     return render_template("update_null_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
                            column_names=column_names, table_list=tables)
 
+
 @app.route("/auteurs_null/edit/choose/<id>", methods=["GET", "POST"])
 def update_null_auteur_choose(id):
     if request.method == "POST":
@@ -167,8 +168,6 @@ def update_null_auteur_choose(id):
         new_auteur = request.form['update_auteur']
         dbm.update_auteur(new_auteur, item_id)
         return redirect('/auteurs_null')
-
-
 
 
 # The table route displays the content of a table
@@ -186,7 +185,6 @@ def table_content(table_name=None):
 @app.route('/home')
 def get_modal():
     return render_template('tables.html', )
-
 
 
 @app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
@@ -210,7 +208,6 @@ def get_select_values(table_name=None):
                            Stop_values=stop_value)
 
 
-
 @app.route("/table_details/<table_name>", methods=["GET", "POST"])
 def get_one_row(table_name=None):
     tables = dbm.get_table_list()
@@ -230,26 +227,24 @@ def get_one_row(table_name=None):
                            rowid=rowid,
                            columns=columns)
 
-@app.route("/table_details/<table_name>/update" , methods=["GET", "POST"])
+
+@app.route("/table_details/<table_name>/update", methods=["GET", "POST"])
 def update_to_database(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
-    Update_values = []
+    update_values = []
     if request.method == "POST":
         result = request.form
-        Update_values = (result.getlist('Update_values'))
+        update_values = (result.getlist('update_values'))
         rows, column_names = dbm.get_table_content(table_name)
-        dbm.update_row(table_name, Update_values)
+        dbm.update_row(table_name, update_values)
     return render_template('table_details.html',
                            table_list=tables,
                            rows=rows,
                            table_name=table_name,
-                           Update_values=Update_values,
+                           update_values=update_values,
                            column_names=column_names,
-                                  columns=columns)
-
-
-
+                           columns=columns)
 
 
 @app.route("/nbsp_error")
@@ -257,7 +252,6 @@ def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
 
 
 @app.route("/allHTML_error")
@@ -274,7 +268,6 @@ def update_HTML_errors(id=None):
     rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
                            column_names=column_names, table_list=tables, vraag=vraag)
-
 
 
 @app.route("/update_vraag/<id>", methods=["POST"])
