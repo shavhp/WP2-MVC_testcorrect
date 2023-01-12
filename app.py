@@ -1,6 +1,6 @@
 import os.path
-import sys
-import sqlite3
+# import sys
+# import sqlite3
 
 from flask import Flask, request, render_template, redirect, url_for, session
 
@@ -54,13 +54,65 @@ def login():
             return render_template('tables.html', name=name1, table_list=tables)
 
 
-@app.route("/leerdoelen", methods=["GET", "POST"])
+@app.route('/home')
+def home_screen():
+    tables = dbm.get_table_list()
+    return render_template('tables.html', table_list=tables)
+
+
+# Routes to display vraagitems with invalid leerdoelen
+@app.route("/leerdoelen_invalid")
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     leerdoel_row = dbm.dropdown_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables,
-                           leerdoel_row=leerdoel_row)
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+
+
+# Route to edit the leerdoel with a dropdown
+@app.route("/leerdoelen/edit/<id>")
+def update_leerdoel(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_leerdoelen()
+    dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
+                           column_names=column_names, table_list=tables)
+
+
+@app.route("/leerdoelen/edit/choose/<id>", methods=["GET", "POST"])
+def update_leerdoel_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_leerdoel = request.form['update_leerdoel']
+        dbm.update_leerdoelen(new_leerdoel, item_id)
+        return redirect('/leerdoelen_invalid')
+
+
+# Routes to display vraagitems with null leerdoelen
+@app.route("/leerdoelen_null")
+def get_leerdoelen_null():
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_none_leerdoelen()
+    return render_template("null_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
+
+
+# Route to edit the leerdoel with a dropdown
+@app.route("/leerdoelen_null/edit/<id>")
+def update_null_leerdoel(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_leerdoelen()
+    dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    return render_template("update_null_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
+                           column_names=column_names, table_list=tables)
+
+
+@app.route("/leerdoelen_null/edit/choose/<id>", methods=["GET", "POST"])
+def update_null_leerdoel_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_leerdoel = request.form['update_leerdoel']
+        dbm.update_leerdoelen(new_leerdoel, item_id)
+        return redirect('/leerdoelen_null')
 
 
 @app.route("/auteurs")
@@ -72,11 +124,11 @@ def get_auteurs():
         return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
-@app.route("/vragen_null")
-def get_vragen_null():
+@app.route("/auteurs_null")
+def get_auteurs_null():
     tables = dbm.get_table_list()
-    rows, column_names = dbm.get_vragen_null()
-    return render_template("invalid_vragen.html", rows=rows, columns=column_names, table_list=tables)
+    rows, column_names = dbm.get_none_auteurs()
+    return render_template("null_auteurs.html", rows=rows, columns=column_names, table_list=tables)
 
 
 # The table route displays the content of a table
@@ -94,6 +146,7 @@ def table_content(table_name=None):
 @app.route('/home')
 def get_modal():
     return render_template('tables.html', )
+
 
 
 @app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
@@ -115,6 +168,7 @@ def get_select_values(table_name=None):
                            columnnames=columnname,
                            Start_values=start_value,
                            Stop_values=stop_value)
+
 
 
 @app.route("/table_details/<table_name>", methods=["GET", "POST"])
@@ -165,16 +219,40 @@ def get_html_error():
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 
+
 @app.route("/allHTML_error")
-def get_ALLhtml_error():
+def get_allhtml_error():
     tables = dbm.get_table_list()
-    rows, column_names = dbm.get_Allhtmlcodes()
+    rows, column_names = dbm.get_allhtmlcodes()
     return render_template("ALLHTML_errors.html", rows=rows, columns=column_names, table_list=tables)
 
 
-if __name__ == "__main__":
-    # According to another student: datastructure of leerdoelen is tuple, should be converted to string
-    # for x in dbm.dropdown_leerdoelen():
-    #    print(str(x[0]))
+@app.route("/update_web/<id>")
+def update_HTML_errors(id=None):
+    vraag = dbm.get_vraag((id))
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_allhtmlcodes()
+    return render_template("HTML_edit.html", id=id, rows=rows,
+                           column_names=column_names, table_list=tables, vraag=vraag)
 
+
+
+@app.route("/update_vraag/<id>", methods=["POST"])
+def update_de_vragen(id):
+    vraag = dbm.get_vraag(id)
+    if request.method == "POST":
+        id_item = request.form['id']
+        vragen = request.form['vraag']
+        dbm.update_vragen(id_item, vragen)
+        return redirect("/allHTML_error")
+
+
+@app.route("/auteur_text")
+def get_auteur_text():
+    tables = dbm.get_table_list()
+    rows, columns = dbm.get_auteur_string()
+    return render_template("auteur_strings.html", table_list=tables, rows=rows, columns=columns)
+
+
+if __name__ == "__main__":
     app.run(host=FLASK_IP, port=FLASK_PORT, debug=FLASK_DEBUG)

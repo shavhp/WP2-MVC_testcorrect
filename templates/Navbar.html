@@ -1,27 +1,30 @@
 <nav>
     <ul>
+        <li><img src="/static/test-correct.png"></li>
         <li><a href="/home">Home</a></li>
         <li>
-            <a href="/leerdoelen">Patronen </a>
-            <ul class="dropdown">
-                <li><a href="/leerdoelen">Leerdoelen</a></li>
-                <li><a href="/auteurs">Auteurs</a></li>
+            <a>Auteurs</a>
+            <ul class = "dropdown">
+                <li><a href="/table_details/{{ table_list[0] }}">Alle auteurs</a></li>
+                <li><a href="/auteurs">Ongeldige auteurs</a></li>
+                <li><a href="/auteur_text">Ongeldige medewerkers</a></li>
+                <li><a href="/auteurs_null">Lege auteurs</a></li>
             </ul>
         </li>
         <li>
-            <a href="/vragen_null">Data Kwaliteit </a>
-            <ul class="dropdown">
-                <li><a href="/vragen_null">Vragen (Empty errors)</a></li>
-                <li><a href="/nbsp_error">HTML_errors</a></li>
-                <li><a href="/allHTML_error">ALLHTML_errors</a></li>
+            <a>Leerdoelen</a>
+            <ul class = "dropdown">
+                <li><a href="/table_details/{{ table_list[1] }}">Alle leerdoelen</a></li>
+                <li><a href="/leerdoelen_invalid">Ongeldige leerdoelen</a></li>
+                <li><a href="/leerdoelen_null">Lege leerdoelen</a></li>
+
             </ul>
         </li>
         <li>
-            <a href="/table_details/auteurs">Tabellen </a>
-            <ul class="dropdown">
-                {% for table in table_list %}
-                    <li><a href="/table_details/{{ table }}"> {{ table }} </a></li>
-                {% endfor %}
+            <a>Vragen</a>
+            <ul class = "dropdown">
+                <li><a href="/table_details/{{ table_list[2] }}">Alle vragen</a></li>
+                <li><a href="/allHTML_error">HTML-fouten</a></li>
             </ul>
         </li>
     </ul>

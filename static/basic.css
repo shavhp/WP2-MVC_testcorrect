@@ -1,4 +1,5 @@
 /* Basic.css  - https://vladocar.github.io/Basic.css/ */
+/* Style inspired by https://www.test-correct.nl/ */
 
 
 
@@ -7,22 +8,28 @@
 :root{
 --sans: 1em/1.6 system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, Fira Sans, sans-serif;
 --mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, 'Courier New', monospace;
---c1: #004df5;
---c2:#393941;
---c3:#393941;
---c4:#fff;
+--font-nunito: url("../static/fonts/Nunito-Regular.ttf");
+--c1: #ffffff;
+--c2: #f0f2f5;
+--c3: #f0f2f5;
+--c4: #041f74;
 --c5:#000;
 --c6: #000000;
 --m1: 8px;
 --rc: 8px;
 }
 
+@font-face{
+    font-family: 'Nunito';
+    src: url("fonts/Nunito-Regular.ttf") format('truetype');
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
-    --c1: #004df5;
-    --c2: #393941;
-    --c3: #393941;
-    --c4: #fff;
+    --c1: #ffffff;
+    --c2: #f0f2f5;
+    --c3: #f0f2f5;
+    --c4: #041f74;
 	}
 }
 
@@ -35,8 +42,8 @@ html {
 /* General settings */
 
 body {
-    margin: 0;
-    font: var(--sans);
+    margin: 100px 0 0;
+    font-family: 'Nunito', serif;
     font-weight: 400;
     font-style: normal;
     text-rendering: optimizeLegibility;
@@ -46,25 +53,25 @@ body {
 }
 
 /* Navigation Menu */
-nav { margin:0 auto; width:100%; height:auto; display:inline-block; background:var(--c1); }
+nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:inline-block; background:var(--c1); position:fixed; top:0; }
 nav ul { margin:0;padding:0; list-style-type:none; float:left; display:inline-block; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
 li > a:after { content: ' »'; } /* Change this in order to change the Dropdown symbol */
 li > a:only-child:after { content: ''; }
-nav ul li a { padding:20px; display:inline-block; color:white; text-decoration:none; }
-nav ul li a:hover { opacity:0.5; color: #2691d9; }
+nav ul li a { padding:20px; display:inline-block; color: #041f74; text-decoration:none; font-weight:bold; font-size: 18px }
+nav ul li a:hover { opacity:0.5; color: #004df5; cursor: pointer }
 nav ul li ul { display:none; position:absolute; left:0; background:var(--c1); float:left; }
 nav ul li ul li { width:100%; border-bottom:1px solid rgba(255,255,255,.3); }
 nav ul li:hover ul { display:block; }
 
 /* Tabel Style*/
 
-table {border: 0px solid #27973D;background-color: #004DF5;width: 100% ;text-align: left;}
-table td, table.purpleHorizon th {border: 1px solid #162355;padding: 2px 2px;}
-table tbody td {font-size: 12px;font-weight: bold;color: #FFFFFF;}
-table tr:nth-child(even) {background: #2262CA;}
+table {border: 0px solid #27973D;background-color: #e3e3e3;width: 100% ;text-align: left;}
+table td, table.purpleHorizon th {border: 1px solid #27973d;padding: 2px 2px;}
+table tbody td {font-size: 16px;font-weight: bold;color: #041f74;}
+table tr:nth-child(even) {background: #ffffff;}
 table thead {background: #27973D;background: -moz-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: -webkit-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: linear-gradient(to bottom, #5db16d 0%, #3ca150 66%, #27973D 100%);border-bottom: 0px solid #270096;}
-table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0px solid #270096;}
+table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0px solid #041f74;}
 table thead th:first-child {border-left: none;}
 
 /*DropDown Button*/

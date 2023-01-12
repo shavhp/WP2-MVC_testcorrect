@@ -16,14 +16,17 @@
 
     <p>Alle rijen in de tabel <b>vragen</b> met lege of ongeldige <b>auteurs<b>:</p>
 
-<div class="container">
+ <div class="container">
     <table>
         <thead>
         <tr>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <th>edit</th>
+            <!-- Figure out if it is allowed to use labels as table headers -->
+            <th>
+                <label for="auteurs">Wijzig auteur</label>
+            </th>
             <th>ignore</th>
         </tr>
         </thead>
@@ -33,12 +36,34 @@
             {% for field in row %}
             <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
-        <td><button class="button-tabel">Ignore</button></td>
+
+        <td>
+        <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
+            <div>
+                <div>
+                    <form action="/auteurs" method="post">
+                        <select name="update_auteur" id="auteurs">
+                            <option>
+                                - Kies auteur -
+                            </option>
+                            {% for a in voornaam_row %}
+                                <option value="{{ a[0] }}">
+                                    {{  a[1] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <button class="button-tabel">Ignore</button>
+        </td>
         </tr>
+
         {% endfor %}
         </tbody>
-
     </table>
 </div>
 </main>

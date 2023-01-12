@@ -17,50 +17,30 @@
 
 
 
-    <p>Alle rijen in de tabel <b>vragen</b> met ongeldige en ontbrekende leerdoelen:</p>
+    <p>Alle rijen in de tabel <b>vragen</b> met ongeldige en ontbrekende leerdoelen.
+    <br/>
+    Klik op een leerdoel om het aan te passen.</p>
 
-<div class="container">
+ <div class="container">
     <table>
         <thead>
         <tr>
             {% for column in columns %}
-            <th>{{ column }}</th>
+                <th>{{ column }}</th>
             {% endfor %}
-            <!-- Figure out if it is allowed to use labels as table headers -->
-            <th>
-                <label for="leerdoelen">Wijzig leerdoel</label>
-            </th>
-            <th>ignore</th>
+            <th>uitzondering</th>
         </tr>
         </thead>
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td>{{ field }}</td>
+                {% if loop.index == 2 %}
+                    <td><a href="/leerdoelen/edit/{{ row[0] }}">{{ field }}</a></td>
+                {% else %}
+                    <td>{{ field }}</td>
+                {% endif %}
             {% endfor %}
-
-        <td>
-        <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
-            <div>
-                <div>
-                    <form action="/leerdoelen" method="post">
-                        <select name="update_leerdoel" id="leerdoelen">
-                            <option value="default">
-                                - Kies leerdoel -
-                            </option>
-                            {% for leerdoel in leerdoel_row %}
-                                <option value="{{ leerdoel[0] }}">
-                                {{  leerdoel[0] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
-                </div>
-            </div>
-
-        </td>
-
         <td>
             <button class="button-tabel">Ignore</button>
         </td>

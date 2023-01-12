@@ -7,22 +7,23 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
-    <style>
-        h3{text-align: center;}
-    </style>
-</head>
 </head>
 <body>
-{% include "/navbar.html" %}
+{% include "/Navbar.html" %}
 
-
-
- <h1>Database displayer</h1>
- <h3>Inspecteer de database door gebruik te maken van de navigatiebalk.</h3>
 
 <main>
 
+    <p>Edit vraag :</p>
+
+    <form action="/update_vraag/{{id}}" method="post">
+        <label for="vraag">Vraag :</label>
+        <input type="text" name="vraag" value="{{vraag}}" required>
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="submit" value="Submit" name="submit">
+    </form>
 
 </main>
+
 </body>
 </html>

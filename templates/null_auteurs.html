@@ -9,34 +9,37 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-{% include "/Navbar.html" %}
+{% include "/navbar.html" %}
 
 
 <main>
 
-    <p>Alle rijen in de tabel <b>vragen</b> met html codes :</p>
+    <p>Alle rijen in de tabel <b>vragen</b> met lege <b>auteurs<b>.</p>
 
-<div>
+<div class="container">
     <table>
         <thead>
         <tr>
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
+            <th>edit</th>
+            <th>ignore</th>
         </tr>
         </thead>
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td><a href="/update_web/{{ row[0] }}">{{ field }}</a></td>
+            <td>{{ field }}</td>
             {% endfor %}
+        <td><button class="button-tabel">Ignore</button></td>
         </tr>
         {% endfor %}
-
         </tbody>
+
     </table>
 </div>
-
+</main>
 </body>
 </html>

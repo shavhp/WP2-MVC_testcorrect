@@ -7,40 +7,45 @@
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
+
 </head>
 <body>
-{% include "/navbar.html" %}
+{% include "Navbar.html" %}
 
 
 <main>
 
-    <p>Alle rijen in de tabel <b>vragen</b> met lege <b>auteurs<b> en/of <b>leerdoelen<b>:</p>
 
-<div class="container">
+
+    <p>Alle rijen in de tabel <b>auteurs</b> waarbij de kolom medewerkers tekst bevat.</p>
+
+ <div class="container">
     <table>
         <thead>
         <tr>
             {% for column in columns %}
-            <th>{{ column }}</th>
+                <th>{{ column }}</th>
             {% endfor %}
-            <th>edit</th>
-            <th>ignore</th>
+            <th>uitzondering</th>
         </tr>
         </thead>
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td>{{ field }}</td>
+                <td>{{ field }}</td>
             {% endfor %}
-        <td><button class="button-tabel">Edit</button></td>
-        <td><button class="button-tabel">Ignore</button></td>
+        <td>
+            <button class="button-tabel">Ignore</button>
+        </td>
         </tr>
+
         {% endfor %}
         </tbody>
 
     </table>
 </div>
 </main>
+
 </body>
 </html>
