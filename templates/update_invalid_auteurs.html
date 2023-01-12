@@ -20,7 +20,7 @@
             <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
             <div>
                 <div>
-                    <form action="/auteurs_null/edit/choose/<id>" method="post">
+                    <form action="/auteurs/edit/choose/<id>" method="post">
                         <label for="auteurs"></label>
                         <select name="update_auteur" id="auteurs">
                             <option>
@@ -37,7 +37,7 @@
                     <input type="hidden" name="selected_id" value="{{ id }}">
                     <input type="submit" value="Opslaan">
                     </form>
-                    <a href="/auteurs_null"><button>Annuleren</button></a>
+                    <a href="/auteurs_invalid"><button>Annuleren</button></a>
                 </div>
             </div>
 

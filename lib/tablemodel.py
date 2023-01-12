@@ -100,7 +100,7 @@ class DatabaseModel:
         # Commits changes to database
         connection.commit()
 
-    def update_null_auteur(self, new_auteur, selected_id):
+    def update_auteur(self, new_auteur, selected_id):
         connection = sqlite3.connect(self.database_file)
         cursor = connection.cursor()
         # Creates a new table from the sql query

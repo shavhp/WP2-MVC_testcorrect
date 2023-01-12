@@ -23,41 +23,20 @@
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <!-- Figure out if it is allowed to use labels as table headers -->
-            <th>
-                <label for="auteurs">Wijzig auteur</label>
-            </th>
-            <th>ignore</th>
+            <th>uitzondering</th>
         </tr>
         </thead>
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
-            <td>{{ field }}</td>
+                {% if loop.index == 4 %}
+                    <td><a href="/auteurs/edit/{{ row[0] }}">{{ field }}</a></td>
+                {% else %}
+                    <td>{{ field }}</td>
+                {% endif %}
             {% endfor %}
-
-        <td>
-        <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
-            <div>
-                <div>
-                    <form action="/auteurs" method="post">
-                        <select name="update_auteur" id="auteurs">
-                            <option>
-                                - Kies auteur -
-                            </option>
-                            {% for a in voornaam_row %}
-                                <option value="{{ a[0] }}">
-                                    {{  a[1] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
-                </div>
-            </div>
-        </td>
-
-        <td>
+         <td>
             <button class="button-tabel">Ignore</button>
         </td>
         </tr>
