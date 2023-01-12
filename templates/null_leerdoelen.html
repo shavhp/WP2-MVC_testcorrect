@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-{% include "/navbar.html" %}
+{% include "Navbar.html" %}
 
 
 <main>
 
-    <p>Alle rijen in de tabel <b>vragen</b> met lege <b>leerdoelen</b>.
+    <p>Alle rijen in de tabel <b>vragen</b> met ontbrekende <b>leerdoelen</b>.
     <br/>
     Klik op een leerdoel om het aan te passen.</p>
 
@@ -25,7 +25,7 @@
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
-            <th>uitzondering</th>
+            <th>info</th>
         </tr>
         </thead>
         <tbody>
@@ -38,7 +38,8 @@
                     <td>{{ field }}</td>
                 {% endif %}
             {% endfor %}
-        <td><button class="button-tabel">Ignore</button></td>
+        <td><a href="https://www.test-correct.nl/?vraag={{ row[0] }}"><button>Meer info</button></a>
+        </td>
         </tr>
         {% endfor %}
         </tbody>

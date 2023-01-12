@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/static/basic.css" type="text/css">
 </head>
 <body>
-{% include "/Navbar.html" %}
+{% include "Navbar.html" %}
 
 
 <main>
@@ -23,15 +23,26 @@
             {% for column in columns %}
             <th>{{ column }}</th>
             {% endfor %}
+        <th>
+            info
+        </th>
         </tr>
         </thead>
         <tbody>
         {% for row in rows %}
         <tr class="active-row">
             {% for field in row %}
+                {% if loop.index == 2 %}
             <td><a href="/update_web/{{ row[0] }}">{{ field }}</a></td>
+                {% else %}
+                    <td>{{ field }}</td>
+                {% endif %}
             {% endfor %}
+        <td>
+            <a href="https://www.test-correct.nl/?vraag={{ row[0] }}"><button>Meer info</button></a>
+        </td>
         </tr>
+
         {% endfor %}
 
         </tbody>
