@@ -45,6 +45,21 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return selected_content, selected_headers
 
+    def get_one_row(self, table_name, rowid):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * from {table_name} Where id={rowid}")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        selected_onerow_headers = [column_name[0] for column_name in cursor.description]
+        selected_onerow_content = cursor.fetchall()
+        # Note that this method returns 2 variables!
+        return selected_onerow_content, selected_onerow_headers
+
+
+    def update_row(self, table_name, Update_values):
+        # print(table_name)
+        print(Update_values)
+
+
 
     #Patronen > Leerdoelen
     def get_leerdoelen(self):

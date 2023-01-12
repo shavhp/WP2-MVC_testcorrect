@@ -2,7 +2,7 @@ import os.path
 import sys
 import sqlite3
 
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, url_for, session
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -24,6 +24,7 @@ if not os.path.isfile(DATABASE_FILE):
     create_demo_database(DATABASE_FILE)
 dbm = DatabaseModel(DATABASE_FILE)
 
+
 # Main route that shows a list of tables in the database
 # Note the "@app.route" decorator. This might be a new concept for you.
 # It is a way to "decorate" a function with additional functionality. You
@@ -34,7 +35,9 @@ dbm = DatabaseModel(DATABASE_FILE)
 @app.route("/")
 def loginscherm():
     return render_template("login.html")
-database={'Erik':'beast','Kangyou':'beast','Sharelle':'beast','Dennis':'beast','':''}
+
+
+database = {'Erik': 'beast', 'Kangyou': 'beast', 'Sharelle': 'beast', 'Dennis': 'beast', '': ''}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
@@ -45,10 +48,10 @@ def login():
     if name1 not in database:
         return render_template('login.html', info='Invalid User')
     else:
-        if database[name1]!=pwd:
+        if database[name1] != pwd:
             return render_template('login.html', info='Invalid Password')
         else:
-            return render_template('tables.html',name=name1, table_list=tables)
+            return render_template('tables.html', name=name1, table_list=tables)
 
 
 @app.route("/leerdoelen", methods=["GET", "POST"])
@@ -56,7 +59,8 @@ def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     leerdoel_row = dbm.dropdown_leerdoelen()
-    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables, leerdoel_row=leerdoel_row)
+    return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables,
+                           leerdoel_row=leerdoel_row)
 
 
 @app.route("/auteurs")
@@ -84,36 +88,26 @@ def table_content(table_name=None):
     else:
         rows, column_names = dbm.get_table_content(table_name)
         return render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables
-        )
+            "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables)
 
 
-# @app.route("")
+@app.route('/home')
+def get_modal():
+    return render_template('tables.html', )
 
 
-@app.route('/table_details/<table_name>/<table_list>/')
-def filter_table(table_name, table_list):
-    tables = dbm.get_table_list()
-    columns = dbm.get_columns(table_name)
-    return render_template('table_details.html', columns=columns, table=table_name, table_list=tables)
-
-
-
-@app.route("/table_details/<table_name>/select", methods =["GET", "POST"] )
+@app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
 def get_select_values(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
-    columnname = ""
-    start_value = ""
-    stop_value = ""
     if request.method == "POST":
         result = request.form
-        columnname = (result.get('POST'))
+        columnname = (result.get('Value_1'))
         start_value = (result.get('Value_2'))
         stop_value = (result.get('Value_3'))
-        rows, column_names = dbm.get_selected_content(table_name, columnname,start_value,stop_value)
-    return render_template('filter_column.html',
-                           column_names = column_names,
+        rows, column_names = dbm.get_selected_content(table_name, columnname, start_value, stop_value)
+    return render_template('table_details.html',
+                           column_names=column_names,
                            rows=rows,
                            columns=columns,
                            table_name=table_name,
@@ -123,16 +117,60 @@ def get_select_values(table_name=None):
                            Stop_values=stop_value)
 
 
+@app.route("/table_details/<table_name>", methods=["GET", "POST"])
+def get_one_row(table_name=None):
+    tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
+    if request.method == "POST":
+        result = request.form
+        rowid = (result.get('rowid'))
+        rij, naam = dbm.get_one_row(table_name, rowid)
+        rows, column_names = dbm.get_table_content(table_name)
+    return render_template('table_details.html',
+                           rij=rij,
+                           naam=naam,
+                           table_list=tables,
+                           column_names=column_names,
+                           rows=rows,
+                           table_name=table_name,
+                           rowid=rowid,
+                           columns=columns)
+
+@app.route("/table_details/<table_name>/update" , methods=["GET", "POST"])
+def update_to_database(table_name=None):
+    tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
+    Update_values = []
+    if request.method == "POST":
+        result = request.form
+        Update_values = (result.getlist('Update_values'))
+        rows, column_names = dbm.get_table_content(table_name)
+        dbm.update_row(table_name, Update_values)
+    return render_template('table_details.html',
+                           table_list=tables,
+                           rows=rows,
+                           table_name=table_name,
+                           Update_values=Update_values,
+                           column_names=column_names,
+                                  columns=columns)
+
+
+
+
+
 @app.route("/nbsp_error")
 def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
+
+
 @app.route("/allHTML_error")
 def get_ALLhtml_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_Allhtmlcodes()
     return render_template("ALLHTML_errors.html", rows=rows, columns=column_names, table_list=tables)
+
 
 if __name__ == "__main__":
     # According to another student: datastructure of leerdoelen is tuple, should be converted to string
