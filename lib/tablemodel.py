@@ -46,7 +46,25 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return selected_content, selected_headers
 
-    # Patronen > Leerdoelen
+
+    def get_one_row(self, table_name, rowid):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute(f"SELECT * from {table_name} Where id={rowid}")
+        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        selected_onerow_headers = [column_name[0] for column_name in cursor.description]
+        selected_onerow_content = cursor.fetchall()
+        # Note that this method returns 2 variables!
+        return selected_onerow_content, selected_onerow_headers
+
+
+    def update_row(self, table_name, Update_values):
+        # print(table_name)
+        print(Update_values)
+
+
+
+    #Patronen > Leerdoelen
+
     def get_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
@@ -142,6 +160,12 @@ class DatabaseModel:
         allhtml_error_header = [column_name[0] for column_name in cursor.description]
         all_error_content = cursor.fetchall()
         return all_error_content, allhtml_error_header
+
+    def get_vraag(self,id):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        cursor.execute("SELECT vraag FROM vragen WHERE id = ?;", (id,))
+        vraag = cursor.fetchone()[0]
+        return vraag
 
     def update_vragen(self, id, vraag):
         connection = sqlite3.connect(self.database_file)

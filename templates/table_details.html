@@ -6,79 +6,107 @@
     <meta name="description" content="Simple database display"/>
     <meta name="author" content="Rotterdam Academy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="/static/basic.css" type="text/css">
+    <link rel="stylesheet" href="../static/basic.css" type="text/css">
+
+
 </head>
+
+
 <body>
 
 {% include "/navbar.html" %}
 
-<main>
+<div>
+
 
     <p>Alle rijen in de tabel <b>{{ table_name }}</b>:</p>
-<div class="grid-container">
+    <div class="grid-container">
+
+        <div class="grid-item2">
+            <div class="select-filter">
+                <p>
+                <h2>Show column</h2></p>
+                <form action="/table_details/{{ table_name }}/filtered" METHOD="POST">
+                    <div class="box">
+                        <select class="input_select" name="Value_1">
+                            {% for column_name in columns %}
+                                <option id="column" name="Value_1">{{ column_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="fname">From</label><br>
+                        <input class="input_select" type="text" name="Value_2" placeholder="Value 1" value=""><br>
+                        <label for="lname">Till</label><br>
+                        <input class="input_select" type="text" name="Value_3" placeholder="Value 2" value=""><br><br>
+                        <input type="submit" value="Submit">
+                    </div>
+
+                </form>
+            </div>
 
 
+            <div class="select-filter">
+                <p>
+                <h2>Voer aanpassing door</h2></p>
+                <form action="/table_details/{{ table_name }}/update" METHOD="POST">
+
+                        {% for row in rij %}
+                            {% for field in  row %}
+                                <textarea class="input_select" type="textarea" name="Update_values_{{ loop.index }}">{{ field }} </textarea><br>
+                            {% endfor %}
+                        {% endfor %}
+
+                        <br>
+                        <input onclick="return confirm('Are you sure?') " type="submit" value="Submit">
+
+                </form>
+            </div>
+
+        </div>
 
 
+        <div class="grid-item1">
+            <table>
+                <thead>
+                <tr>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>edit</th>
+                    {#            <th>ignore</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in rows %}
+                    <tr class="active-row">
+                        {% for field in row %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
+                        {#            <td>{{ row[0] }}</td>    #}
+                        <td>
+                            <form action="/table_details/{{ table_name }}" METHOD="POST">
+                                <div>
+                                    <button class="input_select" type="submit" name="rowid" value="{{ row[0] }}"
+                                            onclick="return confirm('Edit row with ID number {{ row[0] }}')">edit
+                                    </button>
+                                </div>
+                            </form>
+
+                            {#            <td><button class="button-tabel" onclick="return confirm('Function is not available yet')">Ignore</button></td>#}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
 
 
-
-
-
-
-<div class="grid-item1">
-    <table>
-        <thead>
-        <tr>
-            {% for column in columns %}
-            <th>{{ column }}</th>
-            {% endfor %}
-            <th>edit</th>
-{#            <th>ignore</th>#}
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for row in rows %}
-        <tr class="active-row">
-            {% for field in row %}
-            <td>{{ field }}</td>
-            {% endfor %}
-{#            <td>{{ row[0] }}</td>    #}
-            <td><button type="button" class="button-tabel" data-toggle="modal" data-target="#update_book_{{ row[0] }}">Edit</button></td>
-{#            <td><button class="button-tabel" onclick="return confirm('Function is not available yet')">Ignore</button></td>#}
-        </tr>
-        {% endfor %}
-
-        </tbody>
-    </table>
-</div>
-
-<div class="grid-item2">
-<div class="select-filter">
-    <p><h2>Show column</h2></p>
-<form action="/table_details/{{ table_name }}/select" METHOD="POST">
-<div class="box">
-  <select name="POST" name="Value_1">
-      {% for column_name in columns %}
-    <option  id="column" name="Value_1" >{{ column_name }}</option>
-      {% endfor %}
-  </select>
-</div>
-    <div>
-<label for="fname">From</label>
-  <input type="text" id="fname" name="Value_2"  placeholder="Value 1" value=""><br>
-  <label for="lname">Till</label>
-  <input type="text" id="lname" name="Value_3" placeholder="Value 2" value="">
-  <input type="submit" value="Submit">
     </div>
-</form>
-</div>
-</div>
 </div>
 
 
-</div>
 </main>
 
 </body>

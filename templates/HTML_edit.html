@@ -14,11 +14,10 @@
 
 <main>
 
-    <p>Edit vraag :</p>
+    <p>Edit vraag :  {{id}}</p>
 
     <form action="/update_vraag/{{id}}" method="post">
-        <label for="vraag">Vraag :</label>
-        <input type="text" name="vraag" value="{{vraag}}" required>
+        <textarea type="text" name="vraag" rows="10" cols="80" autofocus  required>{{vraag}}</textarea>
         <input type="hidden" name="id" value="{{id}}">
         <input type="submit" value="Submit" name="submit">
     </form>
