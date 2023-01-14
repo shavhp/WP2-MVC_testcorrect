@@ -53,10 +53,10 @@ body {
 }
 
 /* Navigation Menu */
-nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:inline-block; background:var(--c1); position:fixed; top:0; }
-nav ul { margin:0;padding:0; list-style-type:none; float:left; display:inline-block; }
+nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:flex; flex-wrap:nowrap; background:var(--c1); position:fixed; top:0; }
+nav ul { margin:0;padding:0; list-style-type:none; display:flex; flex-wrap:nowrap; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
-li > a:after { content: ' »'; } /* Change this in order to change the Dropdown symbol */
+li > a:after { content: '»'; } /* Change this in order to change the Dropdown symbol */
 li > a:only-child:after { content: ''; }
 nav ul li a { padding:20px; display:inline-block; color: #041f74; text-decoration:none; font-weight:bold; font-size: 18px }
 nav ul li a:hover { opacity:0.5; color: #004df5; cursor: pointer }
