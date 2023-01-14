@@ -144,7 +144,7 @@ pre,code,input,select,textarea,button,img {border-radius: var(--rc)}
 
 /* Forms */
 
-input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 0; padding: 0.6em}
+input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 2px solid var(--c4); padding: 0.6em}
 
 /* Infinite Grid */
 /*
