@@ -7,8 +7,7 @@ from flask import Flask, request, render_template, redirect, session
 from lib.tablemodel import DatabaseModel
 
 
-# This demo glues a random database and the Flask framework. If the database file does not exist,
-# a simple demo dataset will be created.
+# This demo glues a random database and the Flask framework.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
 FLASK_PORT = 80
@@ -18,9 +17,9 @@ app = Flask(__name__)
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
 
-# Check if the database file exists. If not, create a demo database
+# Check if the database file exists.
 if not os.path.isfile(DATABASE_FILE):
-    print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
+    print(f"Could not find database {DATABASE_FILE}.")
 dbm = DatabaseModel(DATABASE_FILE)
 
 
