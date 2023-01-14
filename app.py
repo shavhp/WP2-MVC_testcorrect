@@ -2,7 +2,7 @@ import os.path
 # import sys
 # import sqlite3
 
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, session
 
 from lib.tablemodel import DatabaseModel
 from lib.demodatabase import create_demo_database
@@ -65,7 +65,6 @@ def home_screen():
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
-    leerdoel_row = dbm.dropdown_leerdoelen()
     return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
@@ -120,7 +119,6 @@ def update_null_leerdoel_choose(id):
 def get_auteurs():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_auteurs()
-    auteur_row = dbm.dropdown_auteurs()
     return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
