@@ -25,12 +25,17 @@ virtualenv venv
 pip install -r requirements.txt
 ```
 
+
 Om de demo applicatie te starten: 
 ``` 
 .\venv\scripts\activate
 python app.py
 ```
- 
+
+om uit de virtual envirement te gaan :
+ ``` 
+deactivate
+```
 
 # Inloggen
 Als je de demo applicatie start, kom je vervolgens in onze inlogscherm terecht.
@@ -39,25 +44,9 @@ Voor het gemak hebben we 4 testaccounts gemaakt die jullie kunnen gebruiken.
 
 gebruiker 1
 ``` 
-Gebruikersnaam : Kangyou 
-Wachtwoord : beast
+Gebruikersnaam : Admin
+Wachtwoord : test123
 ```
-gebruiker 2
-``` 
-Gebruikersnaam : Sharelle 
-Wachtwoord : beast
-```
-gebruiker 3
-``` 
-Gebruikersnaam : Erik 
-Wachtwoord : beast
-```
-gebruiker 4
-``` 
-Gebruikersnaam : Dennis
-Wachtwoord : beast
-```
-
 
 
 # Navigatiebar
