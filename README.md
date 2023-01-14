@@ -30,3 +30,64 @@ Om de demo applicatie te starten:
 .\venv\scripts\activate
 python app.py
 ```
+ 
+
+# Inloggen
+Als je de demo applicatie start, kom je vervolgens in onze inlogscherm terecht.
+Dit zorgt ervoor dat alleen redacteuren op deze website kunnen komen. 
+Voor het gemak hebben we 4 testaccounts gemaakt die jullie kunnen gebruiken.
+
+gebruiker 1
+``` 
+Gebruikersnaam : Kangyou 
+Wachtwoord : beast
+```
+gebruiker 2
+``` 
+Gebruikersnaam : Sharelle 
+Wachtwoord : beast
+```
+gebruiker 3
+``` 
+Gebruikersnaam : Erik 
+Wachtwoord : beast
+```
+gebruiker 4
+``` 
+Gebruikersnaam : Dennis
+Wachtwoord : beast
+```
+
+
+
+# Navigatiebar
+Na het inloggen word je doorverwezen naar onze navigatiebar. We maken gebruik van een dropdownsysteem. 
+
+Home
+``` 
+> je wordt terug gebracht naar onze Home-scherm
+```
+Auteurs 
+``` 
+> Alle Auteurs (Alle rijen in de tabel auteurs:)
+> Ongeldige Medewerkers (Alle rijen in de tabel auteurs waarbij de kolom medewerkers tekst bevat terwijl er alleen getallen mogen zijn.)
+> Ongeldige Auteurs (Alle rijen in de tabel vragen met ongeldige auteurs.)
+> Ontbrekende Auteurs (Alle rijen in de tabel vragen met ontbrekende auteurs.)
+``` 
+
+Leerdoelen 
+``` 
+> Alle leerdoelen (Alle rijen in de tabel leerdoelen:)
+> Ongeldige leerdoelen (Alle rijen in de tabel vragen met ongeldige leerdoelen.)
+> Ontbrekende leerdoelen (Alle rijen in de tabel vragen met ontbrekende leerdoelen.)
+``` 
+Vragen 
+``` 
+> Alle vragen (Alle rijen in de tabel vragen:)
+> HTML-fouten (Alle rijen in de tabel vragen met HTML-codes.)
+```
+Logout 
+``` 
+ > Je wordt uitgelogt
+           
+```
