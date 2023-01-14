@@ -30,7 +30,7 @@ Om de demo applicatie te starten:
 .\venv\scripts\activate
 python app.py
 ```
-
+ 
 
 # Inloggen
 Als je de demo applicatie start, kom je vervolgens in onze inlogscherm terecht.
