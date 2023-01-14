@@ -171,8 +171,6 @@ class DatabaseModel:
         # Commits changes to database
         connection.commit()
 
-    # Query derived from
-    # https://stackoverflow.com/questions/21124212/sqlite-check-if-text-field-has-any-alphabetical-chars-in-it
     def get_auteur_string(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
