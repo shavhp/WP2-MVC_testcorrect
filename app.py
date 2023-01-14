@@ -5,7 +5,7 @@ import os.path
 from flask import Flask, request, render_template, redirect, session
 
 from lib.tablemodel import DatabaseModel
-from lib.demodatabase import create_demo_database
+
 
 # This demo glues a random database and the Flask framework. If the database file does not exist,
 # a simple demo dataset will be created.
@@ -21,7 +21,6 @@ DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db'
 # Check if the database file exists. If not, create a demo database
 if not os.path.isfile(DATABASE_FILE):
     print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
-    create_demo_database(DATABASE_FILE)
 dbm = DatabaseModel(DATABASE_FILE)
 
 
@@ -37,7 +36,7 @@ def loginscherm():
     return render_template("login.html")
 
 
-database = {'Erik': 'beast', 'Kangyou': 'beast', 'Sharelle': 'beast', 'Dennis': 'beast', '': ''}
+database = {'Admin': 'test123', '': ''}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
