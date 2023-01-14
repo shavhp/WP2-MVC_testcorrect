@@ -124,3 +124,9 @@ input[type="submit"]:hover{
   font-weight: 700;
   outline: none;
 }
+
+.image{
+  margin:auto;
+  width:15%;
+
+}
