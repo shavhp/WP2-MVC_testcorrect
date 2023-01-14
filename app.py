@@ -248,14 +248,6 @@ def update_to_database(table_name=None):
                            column_names=column_names,
                            columns=columns)
 
-
-@app.route("/nbsp_error")
-def get_html_error():
-    tables = dbm.get_table_list()
-    rows, column_names = dbm.get_htmlcodes()
-    return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
-
 @app.route("/allHTML_error")
 def get_allhtml_error():
     tables = dbm.get_table_list()
