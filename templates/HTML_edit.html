@@ -14,12 +14,12 @@
 
 <main>
 
-    <p>Edit vraag :  {{id}}</p>
+    <p>Pas hier vraagitem {{ id }} aan.</p>
 
     <form action="/update_vraag/{{id}}" method="post">
-        <textarea type="text" name="vraag" rows="10" cols="80" autofocus  required>{{vraag}}</textarea>
-        <input type="hidden" name="id" value="{{id}}">
-        <input type="submit" value="Submit" name="submit">
+        <textarea type="text" name="vraag" rows="10" cols="80" autofocus  required>{{ vraag }}</textarea>
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="submit" value="Opslaan" name="submit">
 
     </form>
     <a href="/allHTML_error"><button>Annuleren</button></a>
