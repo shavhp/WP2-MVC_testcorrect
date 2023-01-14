@@ -142,13 +142,6 @@ class DatabaseModel:
         return auteur_content, auteur_headers
 
     # Data kwaliteit > HTML_errors
-    def get_htmlcodes(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
-        html_error_header = [column_name[0] for column_name in cursor.description]
-        html_error_content = cursor.fetchall()
-        return html_error_content, html_error_header
-
     def get_allhtmlcodes(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT id,vraag FROM vragen WHERE vraag LIKE '%&%' "
@@ -171,12 +164,11 @@ class DatabaseModel:
         # Commits changes to database
         connection.commit()
 
+    # Auteurs table with invalid datatypes in column medewerkers
     def get_auteur_string(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
         cursor.execute(f"SELECT * FROM auteurs WHERE medewerker != 0 AND medewerker != 1")
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
         auteur_headers = [column_name[0] for column_name in cursor.description]
         auteur_content = cursor.fetchall()
-        # Note that this method returns 2 variables!
         return auteur_content, auteur_headers
