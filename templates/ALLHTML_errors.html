@@ -36,7 +36,7 @@
         <tr class="active-row">
             {% for field in row %}
                 {% if loop.index == 2 %}
-            <td><a href="/update_web/{{ row[0] }}">{{ field }}</a></td>
+            <td><a class="table_item" href="/update_web/{{ row[0] }}">{{ field }}</a></td>
                 {% else %}
                     <td>{{ field }}</td>
                 {% endif %}

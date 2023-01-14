@@ -193,3 +193,12 @@ section>section {
     border: 0;
     margin: 0;
     }
+
+a.table_item:link, a.table_item:visited {
+    color: var(--c4)
+}
+
+a.table_item:hover {
+    text-decoration: none;
+    color: rgba(4, 31, 116, 0.49);
+}
