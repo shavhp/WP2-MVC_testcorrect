@@ -9,8 +9,9 @@ Starter repository voor Werkplaats 2. Deze repository bevat een Flask applicatie
 # Installatie
 Om de virtual environment te activeren moet je het uitvoeringsbeleid van PowerShell wijzigen: 
 
-1. Open PowerShell als administrator.
-2. Type het volgende commando in PowerShell:
+1. Zoek PowerShell in de Windows zoekbalk. 
+2. Open PowerShell als administrator.
+3. Type het volgende commando in PowerShell:
 ``` 
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
@@ -32,51 +33,58 @@ Om de demo applicatie te starten:
 python app.py
 ```
 
-om uit de virtual envirement te gaan :
+Om de virtual environment te verlaten:
  ``` 
 deactivate
 ```
 
 # Inloggen
-Als je de demo applicatie start, kom je vervolgens in onze inlogscherm terecht.
-Dit zorgt ervoor dat alleen redacteuren op deze website kunnen komen. 
-Voor het gemak hebben we 4 testaccounts gemaakt die jullie kunnen gebruiken.
+Als je de demoapplicatie start, kom je op het inlogscherm terecht.
+Op deze manier hebben alleen redacteurs toegang tot de applicatie. 
+Voor het gemak hebben we een testaccount gemaakt waarmee je toegang krijgt tot de applicatie.
 
-gebruiker 1
+Gebruiker 1
 ``` 
-Gebruikersnaam : Admin
-Wachtwoord : test123
+Gebruikersnaam: Admin
+Wachtwoord: test123
 ```
 
 
 # Navigatiebar
-Na het inloggen word je doorverwezen naar onze navigatiebar. We maken gebruik van een dropdownsysteem. 
+Na het inloggen word je doorverwezen naar de homepage.
+Bovenin zie je een navigatiebar.
+Deze maakt gebruik van dropdowns die zichtbaar worden op het moment dat je met je muis over een kopje zweeft.
+
+Hieronder beschrijven we wat elk kopje in de navigatiebar doet:
 
 Home
 ``` 
-> je wordt terug gebracht naar onze Home-scherm
+> Je wordt teruggebracht naar ons Home-scherm
 ```
+
 Auteurs 
 ``` 
-> Alle Auteurs (Alle rijen in de tabel auteurs:)
-> Ongeldige Medewerkers (Alle rijen in de tabel auteurs waarbij de kolom medewerkers tekst bevat terwijl er alleen getallen mogen zijn.)
-> Ongeldige Auteurs (Alle rijen in de tabel vragen met ongeldige auteurs.)
-> Ontbrekende Auteurs (Alle rijen in de tabel vragen met ontbrekende auteurs.)
+> Alle Auteurs (Dit toont alle rijen in de tabel auteurs.)
+> Ongeldige Medewerkers (Dit toont alle rijen in de tabel auteurs waarvan de kolom medewerker fouten bevat.)
+> Ongeldige Auteurs (Dit toont alle rijen in de tabel vragen met ongeldige auteurs.)
+> Ontbrekende Auteurs (Dit toont alle rijen in de tabel vragen met ontbrekende auteurs.)
 ``` 
 
 Leerdoelen 
 ``` 
-> Alle leerdoelen (Alle rijen in de tabel leerdoelen:)
-> Ongeldige leerdoelen (Alle rijen in de tabel vragen met ongeldige leerdoelen.)
-> Ontbrekende leerdoelen (Alle rijen in de tabel vragen met ontbrekende leerdoelen.)
+> Alle leerdoelen (Dit toont alle rijen in de tabel leerdoelen.)
+> Ongeldige leerdoelen (Dit toont alle rijen in de tabel vragen met ongeldige leerdoelen.)
+> Ontbrekende leerdoelen (Dit toont alle rijen in de tabel vragen met ontbrekende leerdoelen.)
 ``` 
+
 Vragen 
 ``` 
-> Alle vragen (Alle rijen in de tabel vragen:)
-> HTML-fouten (Alle rijen in de tabel vragen met HTML-codes.)
+> Alle vragen (Dit toont alle rijen in de tabel vragen.)
+> HTML-fouten (Dit toont alle rijen in de tabel vragen met HTML-codes.)
 ```
+
 Logout 
 ``` 
- > Je wordt uitgelogt
+ > Je wordt uitgelogd en teruggebracht naar het loginscherm.
            
 ```
