@@ -163,12 +163,6 @@ class DatabaseModel:
         vraag = cursor.fetchone()[0]
         return vraag
 
-    def get_vraag_item(self, vraag):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("SELECT vraag FROM vragen WHERE vraag = ?;", (vraag,))
-        vraag_item = cursor.fetchone()[2]
-        return vraag_item
-
     def update_vragen(self, id, vraag):
         connection = sqlite3.connect(self.database_file)
         cursor = connection.cursor()
