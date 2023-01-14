@@ -11,7 +11,7 @@
     <img src="/static/test-correct-full.png" height='64' width='292' alt="Test-Correct">
 </div>
     <div class="center">
-      <h1>Login</h1><br>
+      <h1>Log in</h1><br>
 <form action="/form_login" method="post">
   <h2>
       {% with messages = get_flashed_messages() %}
@@ -22,11 +22,11 @@
     {% endif %}
     {% endwith %}
   </h2>
-    Username:<br>
+    Username<br>
   <input class="input_select" type="text" name='username'><br><br>
-  Password:<br>
+  Password<br>
   <input class="input_select" type="password"  name='password' >
-<input type="submit" value="Login">
+<input type="submit" value="Log in">
 </form>
     </div>
 </body>
