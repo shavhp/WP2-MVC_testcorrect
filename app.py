@@ -74,8 +74,9 @@ def update_leerdoel(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/leerdoelen/edit/choose/<id>", methods=["GET", "POST"])
@@ -101,8 +102,9 @@ def update_null_leerdoel(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_null_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/leerdoelen_null/edit/choose/<id>", methods=["GET", "POST"])
@@ -128,8 +130,9 @@ def update_auteur(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_auteurs()
     dropdown_auteur = dbm.dropdown_auteurs()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_invalid_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/auteurs/edit/choose/<id>", methods=["GET", "POST"])
@@ -155,8 +158,9 @@ def update_null_auteur(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_auteurs()
     dropdown_auteur = dbm.dropdown_auteurs()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_null_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/auteurs_null/edit/choose/<id>", methods=["GET", "POST"])
@@ -261,7 +265,7 @@ def get_allhtml_error():
 
 @app.route("/update_web/<id>")
 def update_HTML_errors(id=None):
-    vraag = dbm.get_vraag((id))
+    vraag = dbm.get_vraag_id((id))
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
