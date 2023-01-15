@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "NunitoRegular";
+  font-family: "NunitoRegular", sans-serif;
   color: #041f74;
 }
 body{
@@ -54,7 +54,6 @@ form .txt_field{
   position: absolute;
   top: 80%;
   left: 140px;
-  border: 3px solid;
   background: #2691d9;
   border-radius: 25px;
   font-size: 18px;
@@ -63,7 +62,7 @@ form .txt_field{
   cursor: pointer;
   outline: none;
   margin: 50px 0;
-  border-color: #2691d9;
+  border: 3px solid #2691d9;
   transition: .5s;
 }
 .txt_field label{
@@ -81,7 +80,7 @@ form .txt_field{
   position: absolute;
   top: 40px;
   left: 0;
-  width: 0%;
+  width: 0;
   height: 2px;
   background: #2691d9;
   transition: .5s;
