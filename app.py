@@ -247,8 +247,6 @@ def update_to_database(table_name=None):
                            row_id=row_id)
 
 
-
-
 @app.route("/nbsp_error")
 def get_html_error():
     tables = dbm.get_table_list()
