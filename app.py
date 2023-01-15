@@ -35,7 +35,7 @@ def loginscherm():
     return render_template("login.html")
 
 
-database = {'Admin': 'test123', '': ''}
+database = {'Admin': 'test123'}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
