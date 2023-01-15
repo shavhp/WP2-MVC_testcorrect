@@ -183,8 +183,6 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=columns, table_name=table_name, table_list=tables)
 
 
-
-
 @app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
 def get_select_values(table_name=None):
     tables = dbm.get_table_list()
@@ -247,13 +245,6 @@ def update_to_database(table_name=None):
                            row_id=row_id)
 
 
-@app.route("/nbsp_error")
-def get_html_error():
-    tables = dbm.get_table_list()
-    rows, column_names = dbm.get_htmlcodes()
-    return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
-
 @app.route("/allHTML_error")
 def get_allhtml_error():
     tables = dbm.get_table_list()
@@ -262,7 +253,7 @@ def get_allhtml_error():
 
 
 @app.route("/update_web/<id>")
-def update_HTML_errors(id=None):
+def update_html_errors(id=None):
     vraag = dbm.get_vraag_id(id)
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_allhtmlcodes()

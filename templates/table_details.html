@@ -14,6 +14,7 @@
 
 <body>
 
+<main>
 {% include "Navbar.html" %}
 
 <div>
@@ -24,11 +25,13 @@
 
         <div class="grid-item2">
             <div class="select-filter">
-                <p>
-                <h2>Toon kolom</h2></p>
+
+                <h2>Toon kolom</h2>
+
                 <form action="/table_details/{{ table_name }}/filtered" METHOD="POST">
                     <div class="box">
-                        <select class="input_select" name="Value_1">
+                    <label for="filter_select"></label>
+                        <select class="input_select" id="filter_select" name="Value_1">
                             {% for column_name in columns %}
                                 <option id="column" name="Value_1">{{ column_name }}</option>
                             {% endfor %}
@@ -37,9 +40,9 @@
 
                     <div>
                         <label for="fname">Van</label><br>
-                        <input class="input_select" type="number" name="Value_2" placeholder="Waarde 1" value="" required><br>
+                        <input class="input_select" type="number" id="fname" name="Value_2" placeholder="Waarde 1" value="" required><br>
                         <label for="lname">Tot</label><br>
-                        <input class="input_select" type="number" name="Value_3" placeholder="Waarde 2" value="" required><br><br>
+                        <input class="input_select" type="number" id="lname" name="Value_3" placeholder="Waarde 2" value="" required><br><br>
                         <input onclick="return confirm('Weet je het zeker ?') " type="submit" value="Filteren">
                     </div>
 
@@ -48,15 +51,16 @@
 
 
             <div class="select-filter">
-                <p>
-                <h2>Voer aanpassing door</h2></p>
+
+                <h2>Voer aanpassing door</h2>
                 <form action="/table_details/{{ table_name }}/update" METHOD="POST" onsubmit="location.reload();">
 
 
                         {% for row in rij %}
                             {% for field in  row %}
-                                <input type="hidden" name=id value="{{ row[0] }}">  </input>
-                                <textarea class="input_select" type="textarea" name="Update_values" required>{{ field }} </textarea><br>
+                                <input type="hidden" name=id value="{{ row[0] }}">
+                                <label for="select_input"></label>
+                                <textarea class="input_select" id="select_input" name="Update_values" required>{{ field }} </textarea><br>
                             {% endfor %}
                         {% endfor %}
 
