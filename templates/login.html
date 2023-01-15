@@ -13,15 +13,7 @@
     <div class="center">
       <h1>Log in</h1><br>
 <form action="/form_login" method="post">
-  <h2>
-      {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-  </h2>
+    
     Username<br>
   <input class="input_select" type="text" name='username'><br><br>
   Password<br>

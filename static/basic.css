@@ -74,12 +74,6 @@ table thead {background: #27973D;background: -moz-linear-gradient(top, #5db16d 0
 table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0px solid #041f74;}
 table thead th:first-child {border-left: none;}
 
-/*DropDown Button*/
-/*
-.box select {  background-color: #0563af;  color: white;  padding: 12px;  width: 250px;  border: none;  font-size: 20px;  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);  outline: none;}
-.box:hover::before {  color: rgba(255, 255, 255, 0.6);  background-color: rgba(255, 255, 255, 0.2);}
-.box select option {  padding: 30px;}
-*/
 
 
 .grid-item1 { grid-area: Tabel; }
@@ -146,12 +140,7 @@ pre,code,input,select,textarea,button,img {border-radius: var(--rc)}
 
 input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 2px solid var(--c4); padding: 0.6em}
 
-/* Infinite Grid */
-/*
-.button-tabel {  align-items: center;  appearance: button;  background-color: #0276FF;  border-radius: 8px;  border-style: none;  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;  box-sizing: border-box;  color: #fff;  cursor: pointer;  display: flex;  flex-direction: row;  flex-shrink: 0;  font-family: "RM Neue",sans-serif;  font-size: 100%;   line-height: 1.15;  margin: 0;  padding: 10px 21px;  text-align: center;  text-transform: none;  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;  user-select: none;  -webkit-user-select: none;  touch-action: manipulation;}
-.button-tabel:active {  background-color: #006AE8;}
-.button-tabel:hover {  background-color: #1C84FF;}
-*/
+
 
 section {display: flex; flex-flow: row wrap}
 

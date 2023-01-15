@@ -183,9 +183,6 @@ def table_content(table_name=None):
             "table_details.html", rows=rows, columns=columns, table_name=table_name, table_list=tables)
 
 
-@app.route('/home')
-def get_modal():
-    return render_template('tables.html', )
 
 
 @app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
@@ -248,6 +245,7 @@ def update_to_database(table_name=None):
                            column_names=column_names,
                            columns=columns,
                            row_id=row_id)
+
 
 
 

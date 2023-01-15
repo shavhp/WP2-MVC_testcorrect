@@ -25,7 +25,7 @@
         <div class="grid-item2">
             <div class="select-filter">
                 <p>
-                <h2>Show column</h2></p>
+                <h2>Toon kolom</h2></p>
                 <form action="/table_details/{{ table_name }}/filtered" METHOD="POST">
                     <div class="box">
                         <select class="input_select" name="Value_1">
@@ -36,11 +36,11 @@
                     </div>
 
                     <div>
-                        <label for="fname">From</label><br>
-                        <input class="input_select" type="number" name="Value_2" placeholder="Value 1" value="" required><br>
-                        <label for="lname">Till</label><br>
-                        <input class="input_select" type="number" name="Value_3" placeholder="Value 2" value="" required><br><br>
-                        <input onclick="return confirm('Are you sure?') " type="submit" value="Submit">
+                        <label for="fname">Van</label><br>
+                        <input class="input_select" type="number" name="Value_2" placeholder="Waarde 1" value="" required><br>
+                        <label for="lname">Tot</label><br>
+                        <input class="input_select" type="number" name="Value_3" placeholder="Waarde 2" value="" required><br><br>
+                        <input onclick="return confirm('Weet je het zeker ?') " type="submit" value="Filteren">
                     </div>
 
                 </form>
@@ -62,7 +62,7 @@
 
 
                         <br>
-                        <input onclick="return confirm('Are you sure?') " type="submit" value="Submit">
+                        <input onclick="return confirm('Weet je het zeker ?') " type="submit" value="Opslaan">
 
                 </form>
             </div>
@@ -76,8 +76,7 @@
                     {% for column in columns %}
                         <th>{{ column  }}</th>
                     {% endfor %}
-                    <th>edit</th>
-                    {#            <th>ignore</th>#}
+                    <th>rij aanpassen</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -86,17 +85,16 @@
                         {% for field in row %}
                             <td>{{ field }}</td>
                         {% endfor %}
-                        {#            <td>{{ row[0] }}</td>    #}
                         <td>
                             <form action="/table_details/{{ table_name }}" METHOD="POST">
                                 <div>
                                     <button class="input_select" type="submit" name="rowid" value="{{ row[0] }}"
-                                            onclick="return confirm('Edit row with ID number {{ row[0] }}')">edit
+                                            onclick="return confirm('Rij aanpassen met ID {{ row[0] }}')">aanpassen
                                     </button>
                                 </div>
                             </form>
 
-                            {#            <td><button class="button-tabel" onclick="return confirm('Function is not available yet')">Ignore</button></td>#}
+
                     </tr>
                 {% endfor %}
 
