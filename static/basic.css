@@ -53,7 +53,7 @@ body {
 }
 
 /* Navigation Menu */
-nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:flex; flex-wrap:nowrap; background:var(--c1); position:fixed; top:0; }
+nav { margin:0 auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:flex; flex-wrap:nowrap; background:var(--c1); position:fixed; top:0; }
 nav ul { margin:0;padding:0; list-style-type:none; display:flex; flex-wrap:nowrap; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
 li > a:after { content: '»'; } /* Change this in order to change the Dropdown symbol */
@@ -66,12 +66,12 @@ nav ul li:hover ul { display:block; }
 
 /* Tabel Style*/
 
-table {border: 0px solid #27973D;background-color: #e3e3e3;width: 100% ;text-align: left;}
+table {border: 0 solid #27973D;background-color: #e3e3e3;width: 100% ;text-align: left;}
 table td, table.purpleHorizon th {border: 1px solid #27973d;padding: 2px 2px;}
 table tbody td {font-size: 16px;font-weight: bold;color: #041f74;}
 table tr:nth-child(even) {background: #ffffff;}
-table thead {background: #27973D;background: -moz-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: -webkit-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: linear-gradient(to bottom, #5db16d 0%, #3ca150 66%, #27973D 100%);border-bottom: 0px solid #270096;}
-table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0px solid #041f74;}
+table thead {background: #27973D;background: -moz-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: -webkit-linear-gradient(top, #5db16d 0%, #3ca150 66%, #27973D 100%); background: linear-gradient(to bottom, #5db16d 0%, #3ca150 66%, #27973D 100%);border-bottom: 0 solid #270096;}
+table thead th {font-size: 16px;font-weight: bold;color: #FFFFFF;text-align: left;border-left: 0 solid #041f74;}
 table thead th:first-child {border-left: none;}
 
 
@@ -144,11 +144,11 @@ input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2);
 
 section {display: flex; flex-flow: row wrap}
 
-[style*="--c:"], section>section, aside, article {flex:var(--c,1); margin:var(--m1)}
+[style*="--c:"], section>section, aside, article {flex:var(--c1); margin:var(--m1)}
 
 /* Cards */
 
-article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shadow: 0px 1px 0px rgba(0,0,0,0.3)}
+article {background: var(--c2); border-radius: var(--rc); padding: 1em; box-shadow: 0 1px 0 rgba(0,0,0,0.3)}
 
 [style*="--c:"]:first-child, section>section:first-child, article:first-child {margin-left:0}
 [style*="--c:"]:last-child, section>section:last-child, article:last-child {margin-right:0}
