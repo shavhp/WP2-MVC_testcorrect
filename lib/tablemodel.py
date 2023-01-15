@@ -66,7 +66,6 @@ class DatabaseModel:
             cursor.execute(f"UPDATE {table_name} SET {set_clause} WHERE id = {row_id}")
             connection.commit()
 
-
     # Patronen > Leerdoelen
 
     def get_leerdoelen(self):
