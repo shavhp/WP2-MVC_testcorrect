@@ -2,13 +2,12 @@ import os.path
 # import sys
 # import sqlite3
 
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, session
 
 from lib.tablemodel import DatabaseModel
-from lib.demodatabase import create_demo_database
 
-# This demo glues a random database and the Flask framework. If the database file does not exist,
-# a simple demo dataset will be created.
+
+# This demo glues a random database and the Flask framework.
 LISTEN_ALL = "0.0.0.0"
 FLASK_IP = LISTEN_ALL
 FLASK_PORT = 80
@@ -18,10 +17,9 @@ app = Flask(__name__)
 # This command creates the "<application directory>/databases/testcorrect_vragen.db" path
 DATABASE_FILE = os.path.join(app.root_path, 'databases', 'testcorrect_vragen.db')
 
-# Check if the database file exists. If not, create a demo database
+# Check if the database file exists.
 if not os.path.isfile(DATABASE_FILE):
-    print(f"Could not find database {DATABASE_FILE}, creating a demo database.")
-    create_demo_database(DATABASE_FILE)
+    print(f"Could not find database {DATABASE_FILE}.")
 dbm = DatabaseModel(DATABASE_FILE)
 
 
@@ -37,7 +35,7 @@ def loginscherm():
     return render_template("login.html")
 
 
-database = {'Erik': 'beast', 'Kangyou': 'beast', 'Sharelle': 'beast', 'Dennis': 'beast', '': ''}
+database = {'Admin': 'test123', '': ''}
 
 
 @app.route('/form_login', methods=['POST', 'GET'])
@@ -65,7 +63,6 @@ def home_screen():
 def get_leerdoelen():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
-    leerdoel_row = dbm.dropdown_leerdoelen()
     return render_template("foute_leerdoelen.html", rows=rows, columns=column_names, table_list=tables)
 
 
@@ -75,8 +72,9 @@ def update_leerdoel(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_invalid_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/leerdoelen/edit/choose/<id>", methods=["GET", "POST"])
@@ -102,8 +100,9 @@ def update_null_leerdoel(id=None):
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_leerdoelen()
     dropdown_leerdoel = dbm.dropdown_leerdoelen()
+    vraag_id = dbm.get_vraag_id(id)
     return render_template("update_null_leerdoelen.html", id=id, dropdown_leerdoelen=dropdown_leerdoel, rows=rows,
-                           column_names=column_names, table_list=tables)
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
 
 
 @app.route("/leerdoelen_null/edit/choose/<id>", methods=["GET", "POST"])
@@ -115,20 +114,60 @@ def update_null_leerdoel_choose(id):
         return redirect('/leerdoelen_null')
 
 
-@app.route("/auteurs")
+# Routes to display vraagitems with invalid auteurs
+@app.route("/auteurs_invalid")
 def get_auteurs():
     tables = dbm.get_table_list()
-    x = 0
-    if x == 0:
-        rows, column_names = dbm.get_auteurs()
-        return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
+    rows, column_names = dbm.get_auteurs()
+    return render_template("invalid_auteur.html", rows=rows, columns=column_names, table_list=tables)
 
 
+# Route to edit the auteur with a dropdown
+@app.route("/auteurs/edit/<id>")
+def update_auteur(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_auteurs()
+    dropdown_auteur = dbm.dropdown_auteurs()
+    vraag_id = dbm.get_vraag_id(id)
+    return render_template("update_invalid_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
+
+
+@app.route("/auteurs/edit/choose/<id>", methods=["GET", "POST"])
+def update_auteur_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_auteur = request.form['update_auteur']
+        dbm.update_auteur(new_auteur, item_id)
+        return redirect('/auteurs_invalid')
+
+
+# Routes to display vraagitems with null auteurs
 @app.route("/auteurs_null")
 def get_auteurs_null():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_none_auteurs()
     return render_template("null_auteurs.html", rows=rows, columns=column_names, table_list=tables)
+
+
+# Route to edit the auteur with a dropdown
+@app.route("/auteurs_null/edit/<id>")
+def update_null_auteur(id=None):
+    tables = dbm.get_table_list()
+    rows, column_names = dbm.get_auteurs()
+    dropdown_auteur = dbm.dropdown_auteurs()
+    vraag_id = dbm.get_vraag_id(id)
+    return render_template("update_null_auteurs.html", id=id, dropdown_auteurs=dropdown_auteur, rows=rows,
+                           column_names=column_names, table_list=tables, vraag_id=vraag_id)
+
+
+@app.route("/auteurs_null/edit/choose/<id>", methods=["GET", "POST"])
+def update_null_auteur_choose(id):
+    if request.method == "POST":
+        item_id = request.form['selected_id']
+        new_auteur = request.form['update_auteur']
+        dbm.update_auteur(new_auteur, item_id)
+        return redirect('/auteurs_null')
 
 
 # The table route displays the content of a table
@@ -147,7 +186,6 @@ def table_content(table_name=None):
 @app.route('/home')
 def get_modal():
     return render_template('tables.html', )
-
 
 
 @app.route("/table_details/<table_name>/filtered", methods=["GET", "POST"])
@@ -171,7 +209,6 @@ def get_select_values(table_name=None):
                                Stop_values=stop_value)
 
 
-
 @app.route("/table_details/<table_name>", methods=["GET", "POST"])
 def get_one_row(table_name=None):
     tables = dbm.get_table_list()
@@ -191,7 +228,8 @@ def get_one_row(table_name=None):
                            rowid=rowid,
                            columns=columns)
 
-@app.route("/table_details/<table_name>/update" , methods=["GET", "POST"])
+
+@app.route("/table_details/<table_name>/update", methods=["GET", "POST"])
 def update_to_database(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
@@ -213,13 +251,11 @@ def update_to_database(table_name=None):
 
 
 
-
 @app.route("/nbsp_error")
 def get_html_error():
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_htmlcodes()
     return render_template("HTML_errors.html", rows=rows, columns=column_names, table_list=tables)
-
 
 
 @app.route("/allHTML_error")
@@ -231,12 +267,11 @@ def get_allhtml_error():
 
 @app.route("/update_web/<id>")
 def update_HTML_errors(id=None):
-    vraag = dbm.get_vraag((id))
+    vraag = dbm.get_vraag_id((id))
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
                            column_names=column_names, table_list=tables, vraag=vraag)
-
 
 
 @app.route("/update_vraag/<id>", methods=["POST"])

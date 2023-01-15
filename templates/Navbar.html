@@ -1,14 +1,14 @@
 <nav>
     <ul>
-        <li><img src="/static/test-correct.png"></li>
+        <li id="nav_logo"><img src="/static/test-correct.png" alt="Test-Correct"></li>
         <li><a href="/home">Home</a></li>
         <li>
             <a>Auteurs</a>
             <ul class = "dropdown">
                 <li><a href="/table_details/{{ table_list[0] }}">Alle auteurs</a></li>
-                <li><a href="/auteurs">Ongeldige auteurs</a></li>
                 <li><a href="/auteur_text">Ongeldige medewerkers</a></li>
-                <li><a href="/auteurs_null">Lege auteurs</a></li>
+                <li><a href="/auteurs_invalid">Ongeldige auteurs</a></li>
+                <li><a href="/auteurs_null">Ontbrekende auteurs</a></li>
             </ul>
         </li>
         <li>
@@ -16,7 +16,7 @@
             <ul class = "dropdown">
                 <li><a href="/table_details/{{ table_list[1] }}">Alle leerdoelen</a></li>
                 <li><a href="/leerdoelen_invalid">Ongeldige leerdoelen</a></li>
-                <li><a href="/leerdoelen_null">Lege leerdoelen</a></li>
+                <li><a href="/leerdoelen_null">Ontbrekende leerdoelen</a></li>
 
             </ul>
         </li>

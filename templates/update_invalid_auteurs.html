@@ -14,7 +14,7 @@
 
 <main>
     <p>
-        Update hier het leerdoel van vraagitem {{ id }}, voor de vraag:
+        Update hier de auteur van vraagitem {{ id }}, voor de vraag:
         <br/>
         <br/>
         <i>{{ vraag_id }}</i>.
@@ -22,15 +22,16 @@
             <!-- Code inspired by https://www.youtube.com/watch?v=v3CSQkPJtAc&ab_channel=PythonSimplified -->
             <div>
                 <div>
-                    <form action="/leerdoelen_null/edit/choose/<id>" method="post">
-                        <label for="leerdoelen"></label>
-                        <select name="update_leerdoel" id="leerdoelen">
+                    <form action="/auteurs/edit/choose/<id>" method="post">
+                        <label for="auteurs"></label>
+                        <select name="update_auteur" id="auteurs">
                             <option>
-                                - Kies leerdoel -
+                                - Kies auteur -
                             </option>
-                            {% for l in dropdown_leerdoelen %}
+                            {% for l in dropdown_auteurs %}
                                 <option value="{{ l[0] }}">
                                     {{  l[1] }}
+                                    {{  l[2] }}
                                 </option>
                             {% endfor %}
                         </select>
@@ -38,7 +39,7 @@
                     <input type="hidden" name="selected_id" value="{{ id }}">
                     <input type="submit" value="Opslaan">
                     </form>
-                    <a href="/leerdoelen_null"><button>Annuleren</button></a>
+                    <a href="/auteurs_invalid"><button>Annuleren</button></a>
                 </div>
             </div>
 

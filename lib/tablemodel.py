@@ -46,7 +46,6 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return selected_content, selected_headers
 
-
     def get_one_row(self, table_name, rowid):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute(f"SELECT * from {table_name} Where id={rowid}")
@@ -68,8 +67,7 @@ class DatabaseModel:
             connection.commit()
 
 
-
-    #Patronen > Leerdoelen
+    # Patronen > Leerdoelen
 
     def get_leerdoelen(self):
         cursor = sqlite3.connect(self.database_file).cursor()
@@ -88,6 +86,13 @@ class DatabaseModel:
         leerdoelen_list = cursor.fetchall()
         return leerdoelen_list
 
+    def dropdown_auteurs(self):
+        cursor = sqlite3.connect(self.database_file).cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"SELECT * FROM auteurs")
+        auteurs_list = cursor.fetchall()
+        return auteurs_list
+
     # Function partially inspired by
     # https://flask.palletsprojects.com/en/2.2.x/tutorial/blog/
     # https://www.tutorialspoint.com/what-is-python-commit-method-in-mysql
@@ -96,6 +101,14 @@ class DatabaseModel:
         cursor = connection.cursor()
         # Creates a new table from the sql query
         cursor.execute(f"UPDATE vragen SET leerdoel = {new_leerdoel} WHERE id = {selected_id}")
+        # Commits changes to database
+        connection.commit()
+
+    def update_auteur(self, new_auteur, selected_id):
+        connection = sqlite3.connect(self.database_file)
+        cursor = connection.cursor()
+        # Creates a new table from the sql query
+        cursor.execute(f"UPDATE vragen SET auteur = {new_auteur} WHERE id = {selected_id}")
         # Commits changes to database
         connection.commit()
 
@@ -130,13 +143,6 @@ class DatabaseModel:
         return auteur_content, auteur_headers
 
     # Data kwaliteit > HTML_errors
-    def get_htmlcodes(self):
-        cursor = sqlite3.connect(self.database_file).cursor()
-        cursor.execute("SELECT id,vraag FROM vragen WHERE vraag LIKE '%&nbsp%' OR vraag LIKE '%<br>%';")
-        html_error_header = [column_name[0] for column_name in cursor.description]
-        html_error_content = cursor.fetchall()
-        return html_error_content, html_error_header
-
     def get_allhtmlcodes(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT id,vraag FROM vragen WHERE vraag LIKE '%&%' "
@@ -145,7 +151,7 @@ class DatabaseModel:
         all_error_content = cursor.fetchall()
         return all_error_content, allhtml_error_header
 
-    def get_vraag(self,id):
+    def get_vraag_id(self, id):
         cursor = sqlite3.connect(self.database_file).cursor()
         cursor.execute("SELECT vraag FROM vragen WHERE id = ?;", (id,))
         vraag = cursor.fetchone()[0]
@@ -159,14 +165,11 @@ class DatabaseModel:
         # Commits changes to database
         connection.commit()
 
-    # Query derived from
-    # https://stackoverflow.com/questions/21124212/sqlite-check-if-text-field-has-any-alphabetical-chars-in-it
+    # Auteurs table with invalid datatypes in column medewerkers
     def get_auteur_string(self):
         cursor = sqlite3.connect(self.database_file).cursor()
         # Creates a new table from the sql query
-        cursor.execute(f"SELECT * FROM auteurs WHERE medewerker GLOB '*[A-Za-z]*'")
-        # An alternative for this 2 var approach is to set a sqlite row_factory on the connection
+        cursor.execute(f"SELECT * FROM auteurs WHERE medewerker != 0 AND medewerker != 1")
         auteur_headers = [column_name[0] for column_name in cursor.description]
         auteur_content = cursor.fetchall()
-        # Note that this method returns 2 variables!
         return auteur_content, auteur_headers

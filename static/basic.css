@@ -53,10 +53,10 @@ body {
 }
 
 /* Navigation Menu */
-nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:inline-block; background:var(--c1); position:fixed; top:0; }
-nav ul { margin:0;padding:0; list-style-type:none; float:left; display:inline-block; }
+nav { margin:0px auto 500px; box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2); width:100%; height:auto; display:flex; flex-wrap:nowrap; background:var(--c1); position:fixed; top:0; }
+nav ul { margin:0;padding:0; list-style-type:none; display:flex; flex-wrap:nowrap; }
 nav ul li { position:relative; margin:0 20px 0 0; float:left; display:inline-block; }
-li > a:after { content: ' »'; } /* Change this in order to change the Dropdown symbol */
+li > a:after { content: '»'; } /* Change this in order to change the Dropdown symbol */
 li > a:only-child:after { content: ''; }
 nav ul li a { padding:20px; display:inline-block; color: #041f74; text-decoration:none; font-weight:bold; font-size: 18px }
 nav ul li a:hover { opacity:0.5; color: #004df5; cursor: pointer }
@@ -144,7 +144,7 @@ pre,code,input,select,textarea,button,img {border-radius: var(--rc)}
 
 /* Forms */
 
-input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 0; padding: 0.6em}
+input, select, textarea {font-size: 1em; color:var(--c4); background: var(--c2); border: 2px solid var(--c4); padding: 0.6em}
 
 /* Infinite Grid */
 /*
@@ -185,4 +185,20 @@ section>section {
     body {font-size: 18px}
     main,footer {width: 98%}
     section,article {flex:none; width:100%; margin-left: 0;}
+}
+
+#nav_logo {
+    max-width: 100%;
+    min-width: 230px;
+    border: 0;
+    margin: 0;
+    }
+
+a.table_item:link, a.table_item:visited {
+    color: var(--c4)
+}
+
+a.table_item:hover {
+    text-decoration: none;
+    color: rgba(4, 31, 116, 0.49);
 }
