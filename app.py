@@ -2,7 +2,7 @@ import os.path
 # import sys
 # import sqlite3
 
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect
 
 from lib.tablemodel import DatabaseModel
 
@@ -263,7 +263,7 @@ def get_allhtml_error():
 
 @app.route("/update_web/<id>")
 def update_HTML_errors(id=None):
-    vraag = dbm.get_vraag_id((id))
+    vraag = dbm.get_vraag_id(id)
     tables = dbm.get_table_list()
     rows, column_names = dbm.get_allhtmlcodes()
     return render_template("HTML_edit.html", id=id, rows=rows,
@@ -272,7 +272,7 @@ def update_HTML_errors(id=None):
 
 @app.route("/update_vraag/<id>", methods=["POST"])
 def update_de_vragen(id):
-    vraag = dbm.get_vraag(id)
+    vraag = dbm.get_vraag_id(id)
     if request.method == "POST":
         id_item = request.form['id']
         vragen = request.form['vraag']
