@@ -43,7 +43,7 @@ Als je de demoapplicatie start, kom je op het inlogscherm terecht.
 Op deze manier hebben alleen redacteurs toegang tot de applicatie. 
 Voor het gemak hebben we een testaccount gemaakt waarmee je toegang krijgt tot de applicatie.
 
-Gebruiker 1
+Inloggegevens
 ``` 
 Gebruikersnaam: Admin
 Wachtwoord: test123
