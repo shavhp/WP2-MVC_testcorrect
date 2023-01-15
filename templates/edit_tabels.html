@@ -1,0 +1,32 @@
+
+{% block auteurs %}
+     <textarea class="input_select" type="textarea" name="Update_auteurs_1">{{ row[0] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_auteurs_2">{{ row[1] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_auteurs_3">{{ row[2] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_auteurs_4">{{ row[3] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_auteurs_5">{{ row[4] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_auteurs_6">{{ row[5] }} </textarea><br>
+{% endblock %}
+
+
+{% block leerdoel %}
+     <textarea class="input_select" type="textarea" name="Update_leerdoel_1">{{ row[0] }} </textarea><br>
+     <textarea class="input_select" type="textarea" name="Update_leerdoel_2">{{ row[1] }} </textarea><br>
+{% endblock %}
+
+{% block vragen %}
+         <textarea class="input_select" type="textarea" name="Update_vragen_1">{{ row[0] }} </textarea><br>
+         <textarea class="input_select" type="textarea" name="Update_vragen_2">{{ row[1] }} </textarea><br>
+         <textarea class="input_select" type="textarea" name="Update_vragen_3">{{ row[2] }} </textarea><br>
+         <textarea class="input_select" type="textarea" name="Update_vragen_4">{{ row[3] }} </textarea><br>
+{% endblock %}
+
+
+   {% extends "edit_tabels.html" %}
+             {% if  table_name in auteurs %}
+                    {% block auteurs %} {% endblock %}
+             {% elif table_name in leerdoel %}
+                 {% block leerdoel %} {% endblock %}
+             {% else %}
+                 {% block vragen %} {% endblock %}
+             {% endif %}

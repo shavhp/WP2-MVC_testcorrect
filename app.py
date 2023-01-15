@@ -135,12 +135,13 @@ def get_auteurs_null():
 @app.route("/table_details/<table_name>")
 def table_content(table_name=None):
     tables = dbm.get_table_list()
+    columns = dbm.get_columns(table_name)
     if not table_name:
         return "Missing table name", 400  # HTTP 400 = Bad Request
     else:
         rows, column_names = dbm.get_table_content(table_name)
         return render_template(
-            "table_details.html", rows=rows, columns=column_names, table_name=table_name, table_list=tables)
+            "table_details.html", rows=rows, columns=columns, table_name=table_name, table_list=tables)
 
 
 @app.route('/home')
@@ -159,15 +160,15 @@ def get_select_values(table_name=None):
         start_value = (result.get('Value_2'))
         stop_value = (result.get('Value_3'))
         rows, column_names = dbm.get_selected_content(table_name, columnname, start_value, stop_value)
-    return render_template('table_details.html',
-                           column_names=column_names,
-                           rows=rows,
-                           columns=columns,
-                           table_name=table_name,
-                           table_list=tables,
-                           columnnames=columnname,
-                           Start_values=start_value,
-                           Stop_values=stop_value)
+        return render_template('table_details.html',
+                               column_names=column_names,
+                               rows=rows,
+                               columns=columns,
+                               table_name=table_name,
+                               table_list=tables,
+                               columnnames=columnname,
+                               Start_values=start_value,
+                               Stop_values=stop_value)
 
 
 
@@ -194,20 +195,21 @@ def get_one_row(table_name=None):
 def update_to_database(table_name=None):
     tables = dbm.get_table_list()
     columns = dbm.get_columns(table_name)
-    Update_values = []
+    update_values = []
     if request.method == "POST":
         result = request.form
-        Update_values = (result.getlist('Update_values'))
+        update_values = (result.getlist('Update_values'))
+        row_id = (result.get('id'))
         rows, column_names = dbm.get_table_content(table_name)
-        dbm.update_row(table_name, Update_values)
+        dbm.update_row(table_name, update_values, columns, row_id)
     return render_template('table_details.html',
                            table_list=tables,
                            rows=rows,
                            table_name=table_name,
-                           Update_values=Update_values,
+                           Update_values=update_values,
                            column_names=column_names,
-                                  columns=columns)
-
+                           columns=columns,
+                           row_id=row_id)
 
 
 

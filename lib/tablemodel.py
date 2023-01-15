@@ -56,10 +56,16 @@ class DatabaseModel:
         # Note that this method returns 2 variables!
         return selected_onerow_content, selected_onerow_headers
 
-
-    def update_row(self, table_name, Update_values):
-        # print(table_name)
-        print(Update_values)
+    def update_row(self, table_name, update_values, columns, row_id):
+        connection = sqlite3.connect(self.database_file)
+        cursor = connection.cursor()
+        if len(columns) == len(update_values):
+            set_clause = ""
+            for column, value in zip(columns, update_values):
+                set_clause += f"{column} = '{value}', "
+            set_clause = set_clause[:-2]  # Remove last comma
+            cursor.execute(f"UPDATE {table_name} SET {set_clause} WHERE id = {row_id}")
+            connection.commit()
 
 
 
@@ -94,16 +100,9 @@ class DatabaseModel:
         connection.commit()
 
     def get_columns(self, table):
-        sql_query = "PRAGMA table_info({})".format(table)
+        sql_query = f"PRAGMA table_info({table})"
         result = self.run_query(sql_query)
-        table_list = []
-        for table in result:
-            table_list.append(table[1])
-        return table_list
-
-        table_list = []
-        for table in result:
-            table_list.append(table[0])
+        table_list = ["\"{}\"".format(val[1]) for val in result]
         return table_list
 
     # Patronen > Auteurs
